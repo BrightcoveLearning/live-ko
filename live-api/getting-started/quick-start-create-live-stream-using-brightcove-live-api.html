@@ -1,0 +1,1069 @@
+﻿<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  
+  <title>빠른 시작: 브라이트코브 라이브 API를 사용하여 라이브 스트림 만들기</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  <script src="/assets/js/sajari-head.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><img class="product-logo" src="https://support.brightcove.com/site-assets/images/site/product-logos/Live_Logo.svg" alt="제품 로고" style="max-height: 100px;max-width: 232px;"/></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);"><option value="">언어 선택</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+
+<script>
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+    <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
+      <option value="">기타 브라이트코브 문서</option>
+      
+        
+          <option value="https://support.brightcove.com">설명서 홈</option>
+        
+      
+        
+          <option value="https://audience.support.brightcove.com">브라이트코브 대상</option>
+        
+      
+        
+          <option value="https://beacon.support.brightcove.com">브라이트코브 비콘</option>
+        
+      
+        
+          <option value="https://campaign.support.brightcove.com">브라이트코브 캠페인</option>
+        
+      
+        
+          <option value="https://engage.support.brightcove.com">브라이트코브 참여</option>
+        
+      
+        
+          <option value="https://live.support.brightcove.com">Brightcove Live</option>
+        
+      
+        
+          <option value="https://gallery.support.brightcove.com">Brightcove Gallery</option>
+        
+      
+        
+          <option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
+        
+      
+        
+          <option value="https://social.support.brightcove.com">브라이트코브 소셜</option>
+        
+      
+        
+          <option value="https://studio.support.brightcove.com">비디오 클라우드 스튜디오</option>
+        
+      
+        
+          <option value="https://player.support.brightcove.com">브라이트코브 플레이어 개발</option>
+        
+      
+        
+          <option value="https://apis.support.brightcove.com">비디오 클라우드 플랫폼 API</option>
+        
+      
+        
+          <option value="https://sdks.support.brightcove.com">비디오 클라우드 디바이스 SDK</option>
+        
+      
+        
+          <option value="https://integrations.support.brightcove.com">통합 및 CMS 커넥터</option>
+        
+      
+        
+          <option value="https://general.support.brightcove.com">비디오 클라우드 일반 정보</option>
+        
+      
+        
+          <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+        
+      
+    </select>
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="지원"/> 고객 지원 문의</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="시스템 상태"/> 시스템 상태</a></span> <br/>
+    
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">홈</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/live-api/getting-started/">시작하기</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">빠른 시작: 브라이트코브 라이브 API를 사용하여 라이브 스트림 만들기</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        <nav class="sidenav" id="side_nav">
+          
+            
+            <h5><a href="/index.html">홈</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/get-started/index.html">시작하기 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/get-started/brightcove-live-training-videos.html">브라이트코브 라이브 교육 비디오</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/delivering-live-streams.html">라이브 스트림 전송</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/live-module-guidelines-and-best-practices.html">라이브 모듈 지침 및 모범 사례</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/step-step-using-live-module-open-broadcaster-software-obs.html">단계별: OBS와 함께 라이브 모듈 사용</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/step-step-using-live-module-telestream-wirecast.html">단계별: 와이어캐스트와 함께 라이브 모듈 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/general/index.html">일반 정보 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/general/live-drm.html">라이브 DRM</a></li>
+                  
+                
+                  
+                    <li><a href="/general/live-platforms-comparison-matrix.html">라이브 플랫폼 비교 매트릭스</a></li>
+                  
+                
+                  
+                    <li><a href="/general/live-video-glossary.html">라이브 비디오 용어집</a></li>
+                  
+                
+                  
+                    <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
+                  
+                
+                  
+                    <li><a href="/general/supported-encoders-live-events.html">라이브 이벤트에 대해 지원되는 인코더</a></li>
+                  
+                
+                  
+                    <li><a href="/general/creating-live-stream-using-akamai-stream-packaging-and-telestream-wirecast.html">Akamai 스트림 패키징 및 와이어캐스트 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live-module/index.html">라이브 모듈 사용<strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/live-module/client-side-preroll-with-live-ssai.html">라이브 SSAI를 사용한 클라이언트측 프리롤 광고</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/creating-and-managing-live-events-using-live-module.html">라이브 이벤트 생성 및 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/creating-video-clip-using-live-module.html">비디오 클립 만들기</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-avaya-conference-brightcove-live.html">브라이트코브 라이브 어바이어 컨퍼런스 개최</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-cisco-webex-conference-brightcove-live.html">시스코 웹벡스 - 브라이트코브 라이브 호스트</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-zoom-conference-brightcove-live.html">브라이트코브 라이브로 호스트 줌</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-inxpo-live.html">브라이트코브 라이브에서 INXPO 이벤트 호스팅</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/implementing-server-side-ads-live-module.html">서버 측 광고 구현</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/live-redundancy.html">라이브 이중화</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/publishing-live-event-facebook.html">페이스북에 라이브 이벤트 게시</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/publishing-live-event-youtube.html">YouTube에 실시간 이벤트 게시</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/reviewing-live-analytics.html">라이브 분석 검토</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/using-live-rtmp-outputs-stream-facebook-and-youtube.html">라이브 RTMP 출력 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live-api/index.html">라이브 API 작업 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/getting-started/index.html">라이브 API: 시작하기 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/getting-started/overview-brightcove-live-api.html">개요: 라이브 API</a></li>
+                        
+                        <li><a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html">API를 사용하여 라이브 스트림 만들기</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/code-samples/index.html">라이브 API: 코드 샘플 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/code-samples/live-api-sample-create-live-job.html">라이브 작업 만들기</a></li>
+                        
+                        <li><a href="/live-api/code-samples/quick-start-create-live-job-mpeg2-ts-input.html">MPEG2-TS 입력을 위한 라이브 작업 만들기</a></li>
+                        
+                        <li><a href="/live-api/code-samples/quick-start-using-rtmp-outputs-live-events.html">라이브 이벤트에 RTMP 출력 사용</a></li>
+                        
+                        <li><a href="/live-api/code-samples/simulated-live.html">시뮬레이션 라이브 이벤트</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/references/index.html">라이브 API: 참고 문헌 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/references/live-api-error-messages.html">오류 메시지</a></li>
+                        
+                        <li><a href="/live-api/references/live-api-release-notes.html">릴리즈 노트</a></li>
+                        
+                        <li><a href="/live-api/references/reference.html">라이브 API 참조</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/ssai/index.html">라이브 API: SSAI <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">SSAI를 사용한 큐 포인트 및 광고 비콘</a></li>
+                        
+                        <li><a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">서버 측 광고 삽입 (SSAI)</a></li>
+                        
+                        <li><a href="/live-api/ssai/overview-player-enhancements-live-ssai.html">개요: 라이브 SSAI를 위한 플레이어 향상</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/guides/index.html">라이브 API: 가이드 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/guides/brightcove-live-best-practices.html">브라이트코브 라이브 모범 사례</a></li>
+                        
+                        <li><a href="/live-api/guides/brightcove-live-program-ad-metadata-api.html">브라이트코브 라이브 프로그램 광고 메타데이터 API</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-creating-frame-accurate-clip.html">정확한 프레임 클립 만들기</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-creating-vod-clips.html">VOD 클립 만들기</a></li>
+                        
+                        <li><a href="/live-api/guides/getting-list-live-or-vod-jobs.html">라이브 또는 VOD 작업 목록 가져오기</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-insert-id3-timed-metadata.html">ID3 시간 제한 메타데이터 삽입</a></li>
+                        
+                        <li><a href="/live-api/guides/live-drm-live-api.html">라이브 API를 통한 라이브 DRM</a></li>
+                        
+                        <li><a href="/live-api/guides/managing-credentials-live-api.html">라이브 API에 대한 자격 증명 관리</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-notifications.html">알림</a></li>
+                        
+                        <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-rtmp-outputs.html">RTMP 출력</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-static-entry-points.html">정적 진입 점</a></li>
+                        
+                        <li><a href="/live-api/guides/signed-urls-and-token-auth-live-stream.html">라이브 스트림으로 서명된 URL 및 토큰 인증</a></li>
+                        
+                        <li><a href="/live-api/guides/using-live-redundancy.html">라이브 중복성 사용</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-vod-live-event.html">VOD 라이브 이벤트에서</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/admin/index.html">계정 관리 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/admin/creating-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일 만들기</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/fields-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일에 대한 필드</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/managing-live-settings.html">라이브 설정 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/managing-api-authentication-credentials.html">API 인증 자격 증명 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/standard-live-ingest-profiles.html">표준 라이브 인제스트 프로파일</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/release-notes/index.html">릴리즈 노트 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/release-notes/live-api-release-notes.html">라이브 릴리스 노트</a></li>
+                  
+                
+                  
+                    <li><a href="/release-notes/known-issues.html">알려진 문제</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/index.html">지원 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/support/brightcove-answer.html">브라이트코브 답변</a></li>
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">브라이트코브 시스템 상태 페이지 보기</a></li>
+                  
+                
+                  
+                    <li><a href="/support/contact-sales.html">영업팀에 문의</a></li>
+                  
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">지원 사례 열기</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="네비게이션 메뉴"/></p>
+
+<!-- search bar -->
+<div id="nav-search-box" style="margin-top: 1rem;"></div>
+<!-- in-page navigation for narrow screens -->
+<details class="centered-inpage-nav" id="centered_inpage_nav">
+  <summary><h6 class="toc">페이지 내용</h6></summary>
+  <nav id="centered_toc"></nav>
+  <ul id="centered_in_page_toc" class="list-none"></ul>
+</details>
+<!-- open in new tab/window -->
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="새 탭에서 열기" style="margin-top:4em;width: 1.5em;"/></a>
+
+
+
+  
+    
+
+
+<article class="bcls-article">
+  <h1>빠른 시작: 브라이트코브 라이브 API를 사용하여 라이브 스트림 만들기</h1>
+  <summary>이 튜토리얼은 Live API를 사용하여 라이브 스트림 작업을 만드는 방법을 안내합니다.</summary>
+
+
+
+<section class="bcls-section">
+<h2 id="What_you_need">필요한 것</h2>
+
+<p>이 자습서를 완료하려면 다음이 필요합니다.</p>
+
+<ul>
+	<li>Live API 용으로 설정된 계정</li>
+	<li>Live API 용 API 키 (계정 설정시 제공됨)</li>
+	<li>Video Cloud 계정 (라이브 스트림 작업을 생성하는 데 필요하지 않지만 Brightcove Player에서 재생을 설정하는 데 필요)</li>
+	<li>사용하는 경우<span translate="No">CMS API</span> Studio가 아닌 Video Cloud 비디오를 만들려면 비디오 / 읽기 및 비디오 / 쓰기 권한이있는 클라이언트 자격 증명이 필요합니다. 클라이언트 자격 증명을 얻는 프로세스에 익숙하지 않은 경우<a href="#authentication">입증</a>아래 섹션.</li>
+	<li>다음을 통해 REST API 요청을 수행하는 기능<a href="https://apis.support.brightcove.com/oauth/guides/oauth-create-client-credentials-using-curl.html">곱슬 곱슬하다</a>또는 다음과 같은 REST 클라이언트<a href="https://apis.support.brightcove.com/general/use-insomnia-api-requests.html">잠 잘 수 없음</a>또는<a href="https://apis.support.brightcove.com/oauth/guides/oauth-create-client-credentials-using-postman.html">우편 집배원</a> .
+	<p>도움을 드리기 위해 실습에 사용할 수있는 Insomnia 및 Postman 가져 오기를 준비했습니다 (Brightcove Learning Services에서는 Insomnia를 선호하고 사용하지만 Postman도 사용할 수 있습니다).</p>
+
+	<p>각 zip 파일에는 도움이되는 readme 페이지가 있습니다.</p>
+
+	<ul>
+		<li><a href="/assets/downloads/insomnia-imports.zip">Insomnia Workspace 가져 오기</a></li>
+		<li><a href="/assets/downloads/postman-imports.zip">우편 배달부 수집 및 환경 가져 오기</a></li>
+	</ul>
+	</li>
+	<li>실제 라이브 스트림을 생성하려면 라이브 스트리밍을위한 소프트웨어 또는 하드웨어 인코더가 필요합니다. 아래 지침에는 Wirecast를 사용하여 라이브 스트림을 설정하는 단계가 포함됩니다 ( <a href="http://www.telestream.net/controls/wirecast/download-wirecast.htm">평가판 등록</a> ). 다른 인코더를 사용하는 경우 프로세스는 다르지만 Live API 응답에서 필요한 정보 측면에서 유사해야합니다.</li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="getCredentials" class="bcls-expander-head">CMS API에 대한 자격 증명 가져오기</h2>
+
+<div class="bcls-expander-content">
+<p><span translate="No">CMS API</span>를 사용하려면 적절한 자격 증명이 필요합니다.</p>
+
+<p>대부분의 경우 자격 증명을 얻는 가장 쉬운 방법은 Studio 관리 API 인증 섹션 (계정에 대한 관리자 권한 필요) 을 사용하는 것입니다. 자세한 내용은<a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">API 인증 자격 증명 관리를</a>참조하십시오. 이 경우 필요한 권한은<strong>관계 공유</strong> -읽기 및 쓰기 권한이 모두 필요합니다.</p>
+
+<figure class="bcls-figure"><img class="bcls-image" alt="관계 사용 권한 공유" src="/assets/images/live-api/17765/17765-api-permissions.png"/>
+<figcaption class="bcls-caption--image">관계 사용 권한 공유</figcaption>
+</figure>
+
+<p>필요한 권한을 Studio에서 사용할 수 없거나 OAuth API에서 직접 가져오려는 경우 아래에 나열된<strong>클라이언트 자격 증명 가져오기</strong>문서를 선택합니다. 어떤 옵션을 선택하든 올바른 작업 권한을 요청해야합니다. 다음은 cURL 또는 우편 배달부와 함께 사용하여 적절한 권한을 얻을 수 있습니다.</p>
+
+<pre class="line-numbers">
+    <code class="language-json" translate="No">"operations": [
+    "video-cloud/videos/read",
+    "video-cloud/videos/create",
+    "video-cloud/videos/update"]</code></pre>
+
+<ul>
+	<li><a href="https://apis.support.brightcove.com/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: cURL을 사용하여 클라이언트 자격 증명 가져오기</a></li>
+	<li><a href="https://apis.support.brightcove.com/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: 우편 배달부를 사용하여 클라이언트 자격 증명 가져 오기</a></li>
+</ul>
+</div>
+</section>
+
+<section class="bcls-section">
+<h2 id="Create_live_job">라이브 작업 생성</h2>
+
+<p>먼저 라이브 작업을 생성합니다.</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>이 단계에서는<code translate="No">POST </code>요청 :
+
+	<pre class="line-numbers">
+<code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs
+</code>
+</pre>
+
+	<p>다음을 요청 본문으로 사용하십시오.</p>
+
+	<pre class="line-numbers">
+<code class="language-json" translate="No">{
+    "live_stream": true,
+    "region": "us-west-2",
+    "reconnect_time": 1800,
+    "outputs": [
+        {
+            "label": "hls720p",
+            "live_stream": true,
+            "width": 1280,
+            "height": 720,
+            "video_codec": "h264",
+            "h264_profile": "high",
+            "video_bitrate": 2100,
+            "segment_seconds": 4,
+            "keyframe_interval": 60
+        },
+        {
+            "label": "hls540p",
+            "live_stream": true,
+            "width": 960,
+            "height": 540,
+            "video_codec": "h264",
+            "h264_profile": "main",
+            "video_bitrate": 1500,
+            "segment_seconds": 4,
+            "keyframe_interval": 60
+        },
+        {
+            "label": "hls360p",
+            "live_stream": true,
+            "width": 640,
+            "height": 360,
+            "video_codec": "h264",
+            "h264_profile": "main",
+            "video_bitrate": 800,
+            "segment_seconds": 4,
+            "keyframe_interval": 60
+        }
+    ]
+}
+</code>
+</pre>
+	</li>
+	<li>다음과 같은 REST 클라이언트를 사용하는 경우<a href="https://apis.support.brightcove.com/general/use-insomnia-api-requests.html">잠 잘 수 없음</a>또는<a href="https://apis.support.brightcove.com/general/use-postman-api-requests.html">우편 집배원</a> , 요청에 대해 다음 헤더를 추가해야합니다.
+	<table class="bcls-table">
+		<thead>
+			<tr>
+				<th>키</th>
+				<th>값</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>X-API- 키</td>
+				<td><span class="bcls-input">API 키</span></td>
+			</tr>
+			<tr>
+				<td>컨텐츠 타입</td>
+				<td>응용 프로그램/json</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>위의 1 단계에 표시된 요청 본문을 사용하고 POST 메서드를 사용하여 요청을 보내야합니다.</p>
+
+	<aside class="bcls-aside bcls-aside--information">cURL을 사용하는 것을 선호하는 경우<a href="#curlCreateLiveJob">아래에 상응하는 cURL 명령</a> .</aside>
+	</li>
+	<li>API의 응답은 다음과 유사해야합니다.
+	<pre class="line-numbers">
+<code class="language-json" translate="No">{
+    "id": "15981d93877e490185e6ebc9af2c79a3",
+    "outputs": [
+        {
+            "id": "0-15981d93877e490185e6ebc9af2c79a3",
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_0/chunklist.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_0/chunklist_dvr.m3u8",
+            "playback_url_vod": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_0/chunklist_vod.m3u8",
+            "label": "hls720p"
+        },
+        {
+            "id": "1-15981d93877e490185e6ebc9af2c79a3",
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_1/chunklist.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_1/chunklist_dvr.m3u8",
+            "playback_url_vod": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_1/chunklist_vod.m3u8",
+            "label": "hls540p"
+        },
+        {
+            "id": "2-15981d93877e490185e6ebc9af2c79a3",
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_2/chunklist.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_2/chunklist_dvr.m3u8",
+            "playback_url_vod": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/profile_2/chunklist_vod.m3u8",
+            "label": "hls360p"
+        },
+        {
+            "id": "3-15981d93877e490185e6ebc9af2c79a3",
+            "playlist_type": "defaultS3",
+            "type": "playlist",
+            "filename": "playlist.m3u8",
+            "dvr_filename": "playlist_dvr.m3u8",
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/playlist.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/playlist_dvr.m3u8",
+            "ssai_playback_urls": {
+                "685b239f582c42fca49da33be4f2328e": {
+                    "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/685b239f582c42fca49da33be4f2328e/playlist_ssaiM.m3u8",
+                    "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/685b239f582c42fca49da33be4f2328e/playlist_dvr_ssaiM.m3u8",
+                    "playback_added_cdns": [],
+                    "description": "House Ads - a95ac581551b4478b27910e5675db1f8",
+                    "type": "ads"
+                },
+                "c96e2d00d6744c65a3eddb15425e4a51": {
+                    "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/counter/playlist_ssaiM.m3u8",
+                    "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/counter/playlist_dvr_ssaiM.m3u8",
+                    "playback_added_cdns": [],
+                    "description": "House Counter - a95ac581551b4478b27910e5675db1f8",
+                    "type": "counter"
+                }
+            }
+        }
+        ],
+        <span class="bcls-highlight">"stream_url": "rtmp://ep1-apse2.bcovlive.io:1935/15981d93877e490185e6ebc9af2c79a3"</span>,
+        <span class="bcls-highlight">"stream_name": "alive"</span>,
+        "encryption": {},
+        "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/playlist.m3u8",
+        "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/playlist_dvr.m3u8",
+        "ssai_playback_urls": {
+            "685b239f582c42fca49da33be4f2328e": {
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/685b239f582c42fca49da33be4f2328e/playlist_ssaiM.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/685b239f582c42fca49da33be4f2328e/playlist_dvr_ssaiM.m3u8",
+            "playback_added_cdns": [],
+            "description": "House Ads - a95ac581551b4478b27910e5675db1f8",
+            "type": "ads"
+            },
+            "c96e2d00d6744c65a3eddb15425e4a51": {
+            "playback_url": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/counter/playlist_ssaiM.m3u8",
+            "playback_url_dvr": "http://bcovlive-a.akamaihd.net/15981d93877e490185e6ebc9af2c79a3/us-west-2/counter/playlist_dvr_ssaiM.m3u8",
+            "playback_added_cdns": [],
+            "description": "House Counter - a95ac581551b4478b27910e5675db1f8",
+            "type": "counter"
+        }
+    }
+}
+</code>
+</pre>
+	</li>
+	<li>우리의 목적을 위해 응답의 중요한 필드는 다음과 같습니다.
+	<ul>
+		<li>stream_url (51 행)</li>
+		<li>stream_name (52 행)</li>
+		<li>playback_url (54 행)</li>
+	</ul>
+
+	<aside class="bcls-aside bcls-aside--information">다음을 사용할 수도 있습니다. <code translate="No">playback_url_dvr</code> DVR 기능을 원한다면; 그만큼<code translate="No">playback_url_vod</code>내부 전용입니다.</aside>
+
+	<aside class="bcls-aside bcls-aside--information">DVR 기능은 플레이어가 지원하는 경우에만 작동합니다. 보다<a href="https://player.support.brightcove.com/plugins/live-dvrux-plugin.html">라이브 DVRUX 플러그인</a> Brightcove Player 플러그인이 필요합니다.</aside>
+
+	<p>이 필드의 값은 다음 단계에서 사용자의 응답에서 필요합니다.</p>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Set_up_Video_Cloud_video">Video Cloud 비디오 설정</h2>
+
+<p>이제 라이브 스트림 정보가 있으므로 Brightcove Player에서 재생할 수 있도록 Video Cloud에 원격 비디오를 설정합니다.</p>
+
+<div>이 단계에서 우리는<a href="https://apis.support.brightcove.com/cms/"> CMS API</a> ,하지만 원하는 경우 Video Cloud Studio에서도 수행 할 수 있습니다. <a href="#useStudio">아래의 대체 단계</a> .
+
+<p>Insomnia 또는 Postman을 사용하는 경우 클라이언트 자격 증명을 사용하여 OAuth2 인증을 설정해야합니다. 도움이 필요하면 다음 가이드 중 하나를 참조하세요.</p>
+
+<ul>
+	<li><a href="https://apis.support.brightcove.com/general/use-insomnia-api-requests.html">API 요청에 불면증 사용</a></li>
+	<li><a href="https://apis.support.brightcove.com/general/use-postman-api-requests.html">API 요청에 Postman 사용</a></li>
+</ul>
+
+<ol class="bcls-tasklist-restart">
+	<li>
+	<p>먼저 새로운 동영상을 만들어야합니다. <code translate="No">POST</code>요청 :</p>
+
+	<pre>
+<code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/videos</code></pre>
+	</li>
+	<li>
+	<p>요청 본문에는 여러 메타 데이터가 포함될 수 있습니다 ( <a href="https://apis.support.brightcove.com/cms/references/reference.html#/Videos/CreateVideo"> API 참조</a>자세한 내용은 참조), 그러나 필요한 유일한 것은<code translate="No">name</code> :</p>
+
+	<pre class="line-numbers">
+<code class="language-json" translate="No">{
+    "name": "<span class="bcls-input">some name for your live stream</span>"
+}</code></pre>
+	</li>
+	<li>
+	<p>응답에는 모든 동영상 메타 데이터가 포함되지만 중요한 필드는<code translate="No">id</code> , 원격 자산을 추가해야합니다.</p>
+	</li>
+	<li>
+	<p>HLS 스트림을 추가하려면<code translate="No">POST</code>요청 :</p>
+
+	<pre>
+<code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/videos/<span class="bcls-input">video_id</span>/assets/hls_manifest</code></pre>
+	</li>
+	<li>
+	<p>이번에 요청 본문은 다음과 같습니다.</p>
+
+	<pre class="line-numbers">
+<code class="language-json" translate="No">{
+    "remote_url": "<span class="bcls-input">playback_url for your live stream</span>"
+}</code></pre>
+	</li>
+</ol>
+</div>
+</section>
+
+<section class="bcls-section">
+<h2 id="Add_video_to_player">플레이어에 비디오 추가</h2>
+
+<p>이제 간단한 HTML 페이지를 만들고 방금 만든 비디오로 플레이어를 추가합니다.</p>
+
+<aside class="bcls-aside bcls-aside--information">여기서 다시 Studio를 사용하여 플레이어 게시 코드를 가져올 것입니다.이 작업은<a href="https://apis.support.brightcove.com/player-management/getting-started/overview-player-management-api.html">플레이어 관리 API</a>너가 선호한다면.</aside>
+
+<ol class="bcls-tasklist-restart">
+	<li>간단한 HTML 페이지를 만들어 라이브 스트림 플레이어를 테스트합니다. 원하는 다른 콘텐츠를 포함하거나 전혀 포함하지 않을 수 있습니다.</li>
+	<li>Studio Media Module에서 이전 단계에서 만든 비디오를 선택하고<strong>게시 및 포함&gt; 웹 플레이어</strong> :
+	<figure class="bcls-figure"><img class="bcls-image" alt="비디오 게시" src="/assets/images/live-api/17765/17765-publish-video.png"/>
+	<figcaption class="bcls-caption--image">비디오 게시</figcaption>
+	</figure>
+	</li>
+	<li>게시 대화 상자에서 플레이어를 선택합니다 (Brightcove 기본 플레이어는 괜찮습니다).
+	<figure class="bcls-figure"><img class="bcls-image" alt="플레이어 선택" src="/assets/images/get-started/select-player.png"/>
+	<figcaption class="bcls-caption--image">플레이어 선택</figcaption>
+	</figure>
+	</li>
+	<li>아래로 스크롤하여 플레이어의 크기를 원하는대로 설정 한 다음 코드 블록을 클릭하여 표준 플레이어 코드를 선택합니다.이 코드를 복사하여 html 페이지 본문에 붙여 넣습니다.
+	<figure class="bcls-figure"><img class="bcls-image" alt="게시 코드 받기" src="/assets/images/get-started/get-publishing-code.png"/>
+	<figcaption class="bcls-caption--image">게시 코드 받기</figcaption>
+	</figure>
+	</li>
+	<li>html 페이지를 검색 할 수 있도록 원격 또는 로컬 웹 서버에 저장합니다.</li>
+	<li>웹 브라우저에서 페이지를 엽니 다. 스트리밍을 시작하지 않았으므로 미디어 오류가 표시됩니다.
+	<figure class="bcls-figure"><img class="bcls-image" alt="미디어 오류" src="/assets/images/get-started/media-error.png"/>
+	<figcaption class="bcls-caption--image">미디어 오류</figcaption>
+	</figure>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="curl_commands">cURL 명령</h2>
+
+<p>이 섹션에서는 Insomnia 또는 Postman과 같은 REST 클라이언트를 사용하지 않는 사용자를위한 대체 cURL 명령을 제공합니다.</p>
+
+<h3 id="curlCreateLiveJob">라이브 작업 생성을위한 cURL</h3>
+
+<pre class="line-numbers">
+<code class="language-bash" translate="No">## Create Job - Simple
+curl -X "POST" "https://api.bcovlive.io/v1/jobs" \
+-H "X-API-KEY: <span class="bcls-input">YOUR_API_KEY_HERE</span>" \
+-H "Content-Type: application/json" \
+-d $'{
+"outputs": [
+{
+"height": 720,
+"video_bitrate": 2100,
+"segment_seconds": 4,
+"keyframe_interval": 60,
+"width": 1280,
+"video_codec": "h264",
+"label": "hls720p",
+"h264_profile": "high",
+"live_stream": true
+},
+{
+"height": 540,
+"video_bitrate": 1500,
+"segment_seconds": 4,
+"keyframe_interval": 60,
+"width": 960,
+"video_codec": "h264",
+"label": "hls540p",
+"h264_profile": "main",
+"live_stream": true
+},
+{
+"height": 360,
+"video_bitrate": 800,
+"segment_seconds": 4,
+"keyframe_interval": 60,
+"width": 640,
+"video_codec": "h264",
+"label": "hls360p",
+"h264_profile": "main",
+"live_stream": true
+}
+],
+"region": "us-west-2",
+"reconnect_time": 1800,
+"live_stream": true
+}'</code></pre>
+
+<p>이 코드를 텍스트 편집기에 복사하고<code translate="No">YOUR_API_KEY_HERE </code>자신의 API 키로. 그런 다음 명령 줄에 코드를 복사하여 붙여넣고 실행합니다.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="useStudio">Studio를 사용하여 비디오 만들기</h2>
+
+<p>다음은 Studio에서 동영상을 만드는 대체 단계입니다.</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>Video Cloud Studio에 로그인합니다.</li>
+	<li>미디어 모듈로 이동합니다.</li>
+	<li>왼쪽의 옵션에서<strong>원격 비디오 추가</strong> :
+	<figure class="bcls-figure"><img class="bcls-image" alt="원격 비디오 메뉴 항목 추가" src="/assets/images/get-started/add-remote-video-option.png"/>
+	<figcaption class="bcls-caption--image">원격 비디오 메뉴 항목 추가</figcaption>
+	</figure>
+	</li>
+	<li>에서<strong>원격 비디오 추가</strong>대화 상자에서 비디오 이름을 추가하고 값을 복사하여 붙여 넣습니다. <code translate="No">playback_url</code> Live API 응답에서 URL 필드로. 그런 다음<strong>변환 추가</strong> , 및<strong>저장</strong> :
+	<figure class="bcls-figure"><img class="bcls-image" alt="변환 추가 대화 상자" src="/assets/images/get-started/remote-video-dialog.png"/>
+	<figcaption class="bcls-caption--image">변환 추가 대화 상자</figcaption>
+	</figure>
+
+	<aside class="bcls-aside bcls-aside--information">참고 : 보안 스트림을 위해 HTTPS를 통해 스트리밍하려면<code translate="No">http</code> playback_url에서<code translate="No">https</code> .</aside>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="wirecast">Wirecast를 사용하여 이벤트 스트리밍</h2>
+
+<p>이 섹션에서는 라이브 스트리밍 이벤트를 지원하기 위해 Telestream Wirecast 인코더를 구성 및 사용합니다. Telestream Wirecast 소프트웨어는 카메라로부터 입력을 캡처하여 CDN에서 전달할 수 있는 스트림을 생성하는 데스크톱 애플리케이션입니다. 라이브 스트리밍 이벤트를 전달하는 데 더욱 적합할 수 있는 하드웨어 및 기타 소프트웨어 기반 인코딩 솔루션이 있을 수 있습니다. <a href="http://www.telestream.net/controls/wirecast/download-wirecast.htm">Telestream 웹사이트</a>에서 Wirecast 소프트웨어 무료 평가판 버전을 다운로드할 수 있습니다.</p>
+
+<p class="BCL-aside">참고: 계속하기 전에 컴퓨터에 Wirecast 소프트웨어가 설치되어 있고 카메라가 연결되어 있어야 합니다.</p>
+
+<p>라이브 이벤트를 위해 Wirecast를 구성하려면 다음 단계를 따르십시오.</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>Wirecast를 엽니다.</li>
+	<li>마우스를<strong> +,</strong>딸깍 하는 소리<strong>캡처 장치</strong>그런 다음 카메라를 선택합니다.
+	<figure class="bcls-figure"><img class="bcls-image" alt="카메라 선택" src="/assets/images/get-started/wirecast-camera-select.png"/>
+	<figcaption class="bcls-caption--image">카메라 선택</figcaption>
+	</figure>
+	</li>
+	<li>화살표 버튼 ( <img alt="" src="/assets/images/get-started/arrow-icon.png"/> ) 카메라가 라이브 샷으로 촬영되도록합니다.
+	<figure class="bcls-figure"><img class="bcls-image" alt="카메라 설정" src="/assets/images/get-started/wirecast-camera-setup.png"/>
+	<figcaption class="bcls-caption--image">Wirecast 카메라 구성</figcaption>
+	</figure>
+	</li>
+	<li><strong>스트림</strong>버튼 ( <img alt="" src="/assets/images/get-started/stream-icon.png"/> ) 을 클릭합니다. 출력 설정을 구성하라는 메시지가 표시됩니다.</li>
+	<li><strong>대상</strong>을 <strong>RTMP 서버</strong>로 설정합니다. <strong>확인</strong>을 클릭합니다.</li>
+	<li>에 대한<strong>주소</strong> , 사용<strong> stream_url</strong> Live API에서 반환됩니다 (3 단계).</li>
+	<li>에 대한<strong>흐름</strong> , 살아 사용하십시오.
+	<figure class="bcls-figure"><img class="bcls-image" alt="출력 설정" src="/assets/images/get-started/output-settings.png"/>
+	<figcaption class="bcls-caption--image">Wirecast 출력 설정</figcaption>
+	</figure>
+	</li>
+	<li><strong>(선택사항)</strong> 추가 출력 스트림을 생성하려면 <strong>추가...</strong>를 클릭합니다 추가 출력 스트림을 생성할 때 사용자는 고유한 사용자 정의 인코딩 프로파일을 생성하여 출력 비트레이트를 제어하려 할 수 있습니다. <strong>스트림</strong> 이름에 새 비트레이트가 반영되었는지 확인합니다.</li>
+	<li><strong>확인</strong>을 클릭하여 출력 설정을 저장합니다.</li>
+	<li><strong>스트림</strong>버튼 ( <img alt="" src="/assets/images/get-started/stream-icon.png"/> ) 을 클릭합니다. 라이브 스트림이 시작되어야 합니다.</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="conclusion">결론</h2>
+
+<p>이제 라이브 스트리밍 세션을 만들 준비가되었습니다. 인코더 구성에 다음을 추가해야합니다.</p>
+
+<ul>
+	<li><code translate="No">stream_url</code> : 추가<code translate="No">stream_url</code>직장에서 ( <code translate="No">rtmp</code>주소)</li>
+	<li><code translate="No">stream_name</code> : 스트림 이름은<code translate="No">alive</code></li>
+</ul>
+
+<p>라이브 스트림을 시작하면 이전 단계에서 만든 Brightcove 플레이어에 표시되어야합니다.</p>
+</section>
+</article>
+
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav" id="right_side_nav">
+        <h6 class="toc">페이지 내용</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="last-updated">
+  10월 13일 202020일에 마지막으로 업데이트한 페이지입니다.
+</div>
+
+
+
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>브라이트코브 지원</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">시스템 상태</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">고객 지원 문의</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">문서화</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>교육</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">온라인 강좌</a>
+          </li>
+          <li>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">강좌 등록</a>
+          </li>
+          <li>
+            <a href="https://university.brightcove.com/">브라이트코브 대학교</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">브라이트코브닷컴</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">연락처</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> 브라이트코브 Inc. 모든 판권 소유.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">개인 정보 보호</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">이용 약관</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id="talla_wrapper">
+  <p style="text-align: right;position: relative;"><button style="background:rgb(2, 28, 146);color:Snow;padding:.3rem;position:fixed;right:0;bottom:1em;z-index:9999999" onclick="javascript:displayChat()">궁금한 사항이 있으십니까? </button> </p>
+  <div id="talla_chat">
+</div>
+</div>
+<script>
+      
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documenation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder
+    maxSuggestions: 5, // Maximum number of suggestions to show
+    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+  
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+      window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/js/sajari-search-foot.js"></script>
+  
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <script src="https://assets.talla.com/latest/embeddedjs/talla.js"></script>
+  <script src="/assets/js/talla-init.js"></script>
+  <style>
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+</body>
+
+</html>

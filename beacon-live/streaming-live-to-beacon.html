@@ -1,0 +1,887 @@
+﻿<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  
+  <title>비콘 앱으로 실시간 이벤트 스트리밍</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-ultra.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-super.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-black.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-bold.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.eot" type="font/eot">
+  <link data-react-helmet="true" rel="preload" as="font" href="https://files.brightcove.com/fonts/balto/baltoweb-medium.woff" type="font/woff">
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  <script src="/assets/js/sajari-head.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><img class="product-logo" src="https://support.brightcove.com/site-assets/images/site/product-logos/Live_Logo.svg" alt="제품 로고" style="max-height: 100px;max-width: 232px;"/></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);"><option value="">언어 선택</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+
+<script>
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+    <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
+      <option value="">기타 브라이트코브 문서</option>
+      
+        
+          <option value="https://support.brightcove.com">설명서 홈</option>
+        
+      
+        
+          <option value="https://audience.support.brightcove.com">브라이트코브 대상</option>
+        
+      
+        
+          <option value="https://beacon.support.brightcove.com">브라이트코브 비콘</option>
+        
+      
+        
+          <option value="https://campaign.support.brightcove.com">브라이트코브 캠페인</option>
+        
+      
+        
+          <option value="https://engage.support.brightcove.com">브라이트코브 참여</option>
+        
+      
+        
+          <option value="https://live.support.brightcove.com">Brightcove Live</option>
+        
+      
+        
+          <option value="https://gallery.support.brightcove.com">Brightcove Gallery</option>
+        
+      
+        
+          <option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
+        
+      
+        
+          <option value="https://social.support.brightcove.com">브라이트코브 소셜</option>
+        
+      
+        
+          <option value="https://studio.support.brightcove.com">비디오 클라우드 스튜디오</option>
+        
+      
+        
+          <option value="https://player.support.brightcove.com">브라이트코브 플레이어 개발</option>
+        
+      
+        
+          <option value="https://apis.support.brightcove.com">비디오 클라우드 플랫폼 API</option>
+        
+      
+        
+          <option value="https://sdks.support.brightcove.com">비디오 클라우드 디바이스 SDK</option>
+        
+      
+        
+          <option value="https://integrations.support.brightcove.com">통합 및 CMS 커넥터</option>
+        
+      
+        
+          <option value="https://general.support.brightcove.com">비디오 클라우드 일반 정보</option>
+        
+      
+        
+          <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+        
+      
+    </select>
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="지원"/> 고객 지원 문의</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="시스템 상태"/> 시스템 상태</a></span> <br/>
+    
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">홈</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/beacon-live/">라이브 모듈</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">비콘 앱으로 실시간 이벤트 스트리밍</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        <nav class="sidenav" id="side_nav">
+          
+            
+            <h5><a href="/index.html">홈</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/get-started/index.html">시작하기 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/get-started/brightcove-live-training-videos.html">브라이트코브 라이브 교육 비디오</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/delivering-live-streams.html">라이브 스트림 전송</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/live-module-guidelines-and-best-practices.html">라이브 모듈 지침 및 모범 사례</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/step-step-using-live-module-open-broadcaster-software-obs.html">단계별: OBS와 함께 라이브 모듈 사용</a></li>
+                  
+                
+                  
+                    <li><a href="/get-started/step-step-using-live-module-telestream-wirecast.html">단계별: 와이어캐스트와 함께 라이브 모듈 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/general/index.html">일반 정보 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/general/live-drm.html">라이브 DRM</a></li>
+                  
+                
+                  
+                    <li><a href="/general/live-platforms-comparison-matrix.html">라이브 플랫폼 비교 매트릭스</a></li>
+                  
+                
+                  
+                    <li><a href="/general/live-video-glossary.html">라이브 비디오 용어집</a></li>
+                  
+                
+                  
+                    <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
+                  
+                
+                  
+                    <li><a href="/general/supported-encoders-live-events.html">라이브 이벤트에 대해 지원되는 인코더</a></li>
+                  
+                
+                  
+                    <li><a href="/general/creating-live-stream-using-akamai-stream-packaging-and-telestream-wirecast.html">Akamai 스트림 패키징 및 와이어캐스트 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live-module/index.html">라이브 모듈 사용<strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/live-module/client-side-preroll-with-live-ssai.html">라이브 SSAI를 사용한 클라이언트측 프리롤 광고</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/creating-and-managing-live-events-using-live-module.html">라이브 이벤트 생성 및 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/creating-video-clip-using-live-module.html">비디오 클립 만들기</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-avaya-conference-brightcove-live.html">브라이트코브 라이브 어바이어 컨퍼런스 개최</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-cisco-webex-conference-brightcove-live.html">시스코 웹벡스 - 브라이트코브 라이브 호스트</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-zoom-conference-brightcove-live.html">브라이트코브 라이브로 호스트 줌</a></li>
+                  
+                
+                  
+                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-inxpo-live.html">브라이트코브 라이브에서 INXPO 이벤트 호스팅</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/implementing-server-side-ads-live-module.html">서버 측 광고 구현</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/live-redundancy.html">라이브 이중화</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/publishing-live-event-facebook.html">페이스북에 라이브 이벤트 게시</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/publishing-live-event-youtube.html">YouTube에 실시간 이벤트 게시</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/reviewing-live-analytics.html">라이브 분석 검토</a></li>
+                  
+                
+                  
+                    <li><a href="/live-module/using-live-rtmp-outputs-stream-facebook-and-youtube.html">라이브 RTMP 출력 사용</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/live-api/index.html">라이브 API 작업 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/getting-started/index.html">라이브 API: 시작하기 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/getting-started/overview-brightcove-live-api.html">개요: 라이브 API</a></li>
+                        
+                        <li><a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html">API를 사용하여 라이브 스트림 만들기</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/code-samples/index.html">라이브 API: 코드 샘플 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/code-samples/live-api-sample-create-live-job.html">라이브 작업 만들기</a></li>
+                        
+                        <li><a href="/live-api/code-samples/quick-start-create-live-job-mpeg2-ts-input.html">MPEG2-TS 입력을 위한 라이브 작업 만들기</a></li>
+                        
+                        <li><a href="/live-api/code-samples/quick-start-using-rtmp-outputs-live-events.html">라이브 이벤트에 RTMP 출력 사용</a></li>
+                        
+                        <li><a href="/live-api/code-samples/simulated-live.html">시뮬레이션 라이브 이벤트</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/references/index.html">라이브 API: 참고 문헌 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/references/live-api-error-messages.html">오류 메시지</a></li>
+                        
+                        <li><a href="/live-api/references/live-api-release-notes.html">릴리즈 노트</a></li>
+                        
+                        <li><a href="/live-api/references/reference.html">라이브 API 참조</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/ssai/index.html">라이브 API: SSAI <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">SSAI를 사용한 큐 포인트 및 광고 비콘</a></li>
+                        
+                        <li><a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">서버 측 광고 삽입 (SSAI)</a></li>
+                        
+                        <li><a href="/live-api/ssai/overview-player-enhancements-live-ssai.html">개요: 라이브 SSAI를 위한 플레이어 향상</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/live-api/guides/index.html">라이브 API: 가이드 <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/live-api/guides/brightcove-live-best-practices.html">브라이트코브 라이브 모범 사례</a></li>
+                        
+                        <li><a href="/live-api/guides/brightcove-live-program-ad-metadata-api.html">브라이트코브 라이브 프로그램 광고 메타데이터 API</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-creating-frame-accurate-clip.html">정확한 프레임 클립 만들기</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-creating-vod-clips.html">VOD 클립 만들기</a></li>
+                        
+                        <li><a href="/live-api/guides/getting-list-live-or-vod-jobs.html">라이브 또는 VOD 작업 목록 가져오기</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-insert-id3-timed-metadata.html">ID3 시간 제한 메타데이터 삽입</a></li>
+                        
+                        <li><a href="/live-api/guides/live-drm-live-api.html">라이브 API를 통한 라이브 DRM</a></li>
+                        
+                        <li><a href="/live-api/guides/managing-credentials-live-api.html">라이브 API에 대한 자격 증명 관리</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-notifications.html">알림</a></li>
+                        
+                        <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-rtmp-outputs.html">RTMP 출력</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-static-entry-points.html">정적 진입 점</a></li>
+                        
+                        <li><a href="/live-api/guides/signed-urls-and-token-auth-live-stream.html">라이브 스트림으로 서명된 URL 및 토큰 인증</a></li>
+                        
+                        <li><a href="/live-api/guides/using-live-redundancy.html">라이브 중복성 사용</a></li>
+                        
+                        <li><a href="/live-api/guides/live-api-vod-live-event.html">VOD 라이브 이벤트에서</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/admin/index.html">계정 관리 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/admin/creating-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일 만들기</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/fields-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일에 대한 필드</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/managing-live-settings.html">라이브 설정 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/managing-api-authentication-credentials.html">API 인증 자격 증명 관리</a></li>
+                  
+                
+                  
+                    <li><a href="/admin/standard-live-ingest-profiles.html">표준 라이브 인제스트 프로파일</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/release-notes/index.html">릴리즈 노트 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/release-notes/live-api-release-notes.html">라이브 릴리스 노트</a></li>
+                  
+                
+                  
+                    <li><a href="/release-notes/known-issues.html">알려진 문제</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/index.html">지원 <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/support/brightcove-answer.html">브라이트코브 답변</a></li>
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">브라이트코브 시스템 상태 페이지 보기</a></li>
+                  
+                
+                  
+                    <li><a href="/support/contact-sales.html">영업팀에 문의</a></li>
+                  
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">지원 사례 열기</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="네비게이션 메뉴"/></p>
+
+<!-- search bar -->
+<div id="nav-search-box" style="margin-top: 1rem;"></div>
+<!-- in-page navigation for narrow screens -->
+<details class="centered-inpage-nav" id="centered_inpage_nav">
+  <summary><h6 class="toc">페이지 내용</h6></summary>
+  <nav id="centered_toc"></nav>
+  <ul id="centered_in_page_toc" class="list-none"></ul>
+</details>
+<!-- open in new tab/window -->
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="새 탭에서 열기" style="margin-top:4em;width: 1.5em;"/></a>
+
+
+
+  
+    
+
+
+<style> 
+ol li { 
+padding-bottom: 5px;
+}
+</style>
+<article class="bcls-article">
+  <h1>비콘 앱으로 실시간 이벤트 스트리밍</h1>
+  <summary>이 항목에서는 실시간 이벤트를 비콘 앱으로 스트리밍하는 방법을 배웁니다.</summary>
+
+  <section class="bcls-section">
+    <h2 id="overview">개요</h2>
+   
+    <p>라이브 이벤트를 애플리케이션으로 스트리밍하려면 일련의 단계에 따라 Video Cloud Live 계정과 브라이트코브 비콘을 연결해야 합니다. </p>
+    <p>프로세스의 상위 수준 뷰는 다음과 같습니다.</p>
+<ol>
+    <li>첫 번째 단계는 브라이트코브 비콘에서 이벤트와 재생 목록을 만드는 것입니다. 이 이벤트는 앱에서 동영상의 자리 표시자로 사용할 수 있습니다. </li>
+    <li>Video Cloud 계정으로 이동하여 Live에 액세스하여 이벤트를 만들고 식별자로 사용할 작업 ID를 얻습니다. </li>
+    <li>브라이트코브 비콘으로 돌아가면 라이브 스트리밍을 연결하여 라이브 플랫폼에서 생성된 작업 ID를 플랫폼의 이벤트 섹션 아래에 둘 수 있습니다.</li>
+    <li>연결을 기다리면 Beacon 앱에서 라이브 비디오가 스트리밍되기 시작합니다.</li>
+    <li>마지막 섹션에서는 정적 진입 점에 의해 라이브에서 다른 유형의 이벤트를 만드는 단계를 볼 수 있습니다.</li>
+</ol>
+
+    <p>이 문서의 나머지 부분에서는 이러한 각 단계에 대한 세부 정보를 제공합니다.</p>
+
+  </section>
+
+  <section class="bcls-section">
+
+    <h2 id="create">신호에서 라이브 이벤트 만들기:</h2>
+    <p>Brightcove Beacon 플랫폼에서<strong>이벤트</strong>탭을 클릭하여 이벤트 설정을 시작합니다.</p>
+
+    <aside class="bcls-aside bcls-aside--information"><strong>브라이트코브 비콘 라이브로</strong>활성화된 계정만 탭 섹션에서<strong>재생 목록</strong>및<strong>이벤트를</strong>사용할 수 있습니다. 활성화되지 않은 경우 브라이트코브 지원에 문의하십시오.</aside>
+    <ol class="bcls-tasklist-restart">
+    
+        <li>클릭<strong>새 이벤트 추가</strong> : 
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/1-add-new-event.png"/></figure>
+        </li>
+        <li>라이브 이벤트에<strong>이름</strong> , 그리고<strong>이벤트 시작일</strong> :
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/2-beacon-basic-data.png"/></figure>
+        </li>
+        <li>에서<strong>텍스트 데이터</strong>탭에서 이벤트 정보를 입력하십시오.
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/3-beacon-textual-data.png"/></figure>
+        </li>
+        <li>에서<strong>비 텍스트 데이터</strong>탭에서 이벤트의 이미지 포스터를 선택하십시오.
+            <p>세로, 가로, 축소판, 와이드 배너 중에서 이벤트에 사용할 포스터 유형을 선택할 수 있습니다. </p>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/4-beacon-nontextual-data.png"/></figure>
+        </li>
+        <li>에서<strong>권리 및 일정</strong>탭에서 설정할 수 있습니다. <strong>가용성 세부 정보</strong>같이:
+            <ul>
+        <li><strong>권리 유형 :</strong> 광고 , 구독 또는 무료 중에서 권리 유형을 선택합니다 . </li>
+        <li><strong>시작 시간:</strong> 이벤트 시작 시간</li>
+        <li><strong>종료 시간 :</strong> 이벤트의 종료 시간, 이 시간은 앱 내에서 제한을 생성하기 위해 만들어집니다.</li>
+        <li><strong>최대 스트림 :</strong> 앱에서 허용되는 최대 스트림 수입니다. 기본 숫자는 0 (영) 입니다. </li>
+        <li><strong>장치 세부 정보 :</strong> 여기에서 스트림을 게시할 다른 수의 장치를 추가할 수 있습니다. (예: iOS, 안드로이드, 로쿠, 삼성 등) </li>
+        <li><strong>지리적 위치 정보 :</strong> 앱을 사용하도록 설정할 국가 목록입니다. 국가를 제한하고 싶지 않을 경우 “World”를 선택할 수 있습니다.</li>
+        <li><strong>거부 된 위치 :</strong> 콘텐츠에 대한 액세스가 거부된 지역 목록입니다.</li>
+        </ul>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/5-beacon-right-schedualing.png"/></figure>
+        </li>
+
+        <li>아래 버튼을 클릭하십시오: <strong>새 이벤트 만들기</strong>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" width="300" height="200" src="/beacon-live/beaconimg/6-create-event-button.png"/></figure>
+        </li>
+    </ol>
+    </section>
+    <section class="bcls-section">
+         <h2 id="Playlist">재생 목록에 신호 이벤트 추가</h2>
+        <p>이벤트를 만들면<strong>재생 목록</strong>상단 메뉴의 탭. 우리는 우리가 뭔가를 스트리밍하기 전에 재생 목록에 이벤트를 추가해야합니다.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/7-playlist-menu.png"/></figure>
+
+        <ol class="bcls-tasklist-restart">
+    
+            <li>클릭<strong>새 재생 목록 추가</strong>버튼을 누르고 하나를 만듭니다. 
+            <aside class="bcls-aside bcls-aside--warning">브라이트코브 비콘에서 라이브 이벤트를 포함할 재생 목록을 만들어야 합니다. <strong>하지 마라</strong> Video Cloud의 재생 목록을 사용하면 Video Cloud 재생 목록을 사용하면 Beacon Live 녹화를 덮어 쓰거나 삭제할 수 있습니다.</aside>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/8-playlist.png"/></figure>
+            </li>
+
+            <li>에<strong>재생 목록</strong> , 콘텐츠 유형 탭에서<strong>이벤트</strong>탭: 
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/9-playlist-events.png"/></figure>
+            </li>
+
+            <li>콘텐츠 모듈에서 이벤트를 찾은 다음 (+) 버튼을 클릭하여 왼쪽 재생 목록에 추가합니다. 이벤트 순서를 앱에 표시하려는 방식으로 배치할 수 있습니다. 
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/10-playlist-select-event.png"/></figure>
+            </li>
+
+            <li>재생 목록 (시간, 장치, 위치 등) 의 설정 조정 당신은 당신의 이벤트와 함께했던 것처럼.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src=""/></figure>
+            </li>
+
+            <li><strong>재생 목록 버튼에 변경 사항 저장</strong>버튼을 클릭합니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" width="300" height="200" src="/beacon-live/beaconimg/11-save-playlist-button.png"/></figure>
+            </li>
+
+            <li>화면 오른쪽 상단에있는 도구 버튼을 클릭하여 캐시를 지우면 모든 것이 앱에 올바르게 표시됩니다. 
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/12-clear-cache.png"/></figure>
+            </li>
+            </ol>
+
+            <p>이 시점에서 이벤트는 브라이트코브 비콘 앱에 컨테이너로 생성되지만 실제로 라이브 비디오 스트리밍을 시작하려면 Video Cloud Live Platform에서 전송을 설정해야 합니다.</p>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/13-beacon-apps-white.png"/></figure>
+
+</section>
+
+    <section class="bcls-section">
+            <h2 id="Live">Studio에서 라이브 이벤트 만들기</h2>
+
+            <p>라이브 모듈에 액세스하려면 Video Cloud Studio에 로그인하고 탐색 헤더에서 Live를 클릭합니다. </p>
+
+            <ol class="bcls-tasklist-restart">
+
+            <li>이벤트 관리 페이지에서<strong>이벤트 생성</strong> . 라이브 이벤트 만들기 또는 라이브 채널 만들기 페이지가 열립니다. 이벤트와 채널을 만들 때의 속성은 동일합니다. 이 문서의 스크린샷은 이벤트 생성에 대해 설명합니다.
+                <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/15-live-event.png"/></figure>
+            </li>
+            <li>이벤트 상세내역을 입력합니다.
+            <ul>
+                <li><strong>이벤트 이름</strong> - 이벤트 이름입니다. 이 이름은 비디오가 비디오 자산으로 저장된 경우 미디어 모듈에도 나타납니다 (최대 255자).</li>
+                <li><strong>간단한 설명</strong> - 이벤트 설명 (최대 250자)</li>
+                <li><strong>태그</strong> - 이벤트와 연결할 태그입니다. 비디오가 비디오 자산으로 저장된 경우 태그가 비디오에 할당됩니다 (최대 128자 및 1200 태그).</li>
+                <li><strong>참조 ID</strong> - 이벤트의 참조 ID입니다. 고유해야 합니다 (최대 150자).</li>
+            </ul>
+            </li>
+
+            <li>계정에 대한 모든 필수 사용자 정의 필드가 표시됩니다. 사용자 정의 필드에 값을 할당합니다.</li>
+	        <li><strong>소셜 미디어로 스트리밍을</strong><strong>허용됨으로</strong>설정하면 이벤트를 소셜 미디어 플랫폼으로 스트리밍할 수 있습니다. 이것은 할 수 있습니다<a href="#social">이벤트 스트리밍이 시작되면</a>또는 사용하여<a href="/node/18749">소셜 모듈</a> .</li>
+	        <li><strong>라이브 인제스트 프로파일을</strong>선택합니다. 드롭다운 목록에 모든 라이브 인제스트 프로필이 나열됩니다. 인제스트 프로파일은 작성되는 라이브 변환의 품질과 수를 제어합니다. <strong>프로파일 관리</strong>링크를 클릭하면 다른 브라우저 탭에서 인제스트 프로파일 편집기가 열립니다. 인제스트 프로파일 편집기에 액세스하려면 계정 관리자여야 합니다. <strong>선택한 인제스트 프로파일을 사용하여 작성될 변환을 보려면 RENDITION스 링크를 클릭합니다.</strong>
+	        <aside class="bcls-aside bcls-aside--information">세 계층의 비트율 및 청구 세부 정보는 다음과 같습니다.
+             <ul>
+                    <li>계층 1은 최대 5,500Kbps를 허용하며 1.0x 시간으로 청구됩니다.</li>
+                    <li>계층 2는 최대 10,000Kbps를 허용하며 1.5x 시간으로 청구됩니다.</li>
+                    <li>계층 3은 최대 20,000Kbps를 허용하며 2.0x 시간으로 청구됩니다.</li>
+             </ul>
+            </aside>
+            </li>
+            <li><strong>완료되면 이벤트를 비디오 자산으로 변환을</strong>선택하여 라이브 비디오의 VOD 버전을 Video Cloud 계정에 저장합니다. 이 옵션을 선택하면 선택한<strong>라이브 인제스트 프로파일의</strong>최고 품질의 변환이 VOD 비디오의 소스로 사용됩니다. 변환을 만들 때 계정의 기본 인제스트 프로필이 사용됩니다. <strong>라이브 이벤트가 종료되는 즉시 VOD 버전을 사용할 수 없습니다. 수집 프로세스가 완료되면 비디오를 사용할 수 있습니다.</strong>
+                <aside class="bcls-aside bcls-aside--information">참고: 반복 이벤트를 사용할 때는 이 옵션이 지원되지 않습니다.</aside>
+                </li>
+            <li>고급 옵션을 클릭하고 고급 옵션을 구성합니다 .
+                <aside class="bcls-aside bcls-aside--information">참고: 실시간 비콘 작업의 경우 고급 옵션에서 스트림 상태 알림 확인란을 활성화해야 합니다.</aside>
+            </li>
+            <li>스트림 상태 알림 활성화 
+            <p>비콘 CMS에서 알림 URL을 추가합니다 (이 URL은 브라이트코브 지원에서 제공됨).</p>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/16-enable-notifications.png"/></figure>
+            </li>
+            <li><strong>이벤트 만들기를</strong>클릭하여 라이브 이벤트를 시작합니다. 인코더에서 사용할<strong>스트리밍 끝점 (RTMP URL)</strong>및<strong>스트림 이름</strong>등 라이브 이벤트에 대한 세부 정보가 포함된제어실 페이지가열립니다.
+            <p>스트림을 처리하는 데 약 1 분이 소요됩니다.</p>
+            <aside class="bcls-aside bcls-aside--information">라이브 플랫폼에서 스트리밍을 시작하려면 인코더가 필요합니다. 인코더 사용 방법에 대한 자세한 내용은 다음 설명서를 참조하십시오.
+               <p><a href="https://live.support.brightcove.com/get-started/step-step-using-live-module-telestream-wirecast.html" target="_blank">단계별: 텔레스트림 와이어캐스트와 함께 라이브 모듈 사용</a></p> 
+                <p><a href="https://live.support.brightcove.com/get-started/step-step-using-live-module-open-broadcaster-software-obs.html" target="_blank">단계별: 오픈 브로드캐스터 소프트웨어 (OBS) 와 함께 라이브 모듈 사용</a></p>
+            </aside>
+
+                 </li>
+            <li>에서<strong>제어실</strong>복사<strong> "작업 ID"</strong>그리고<strong>“동영상 ID”</strong> ~로부터<strong>테스트 이벤트</strong>패널에서 Beacon 플랫폼 설정에서 라이브 이벤트를 구성하려면 둘 다 필요합니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/16.2-control-room.png"/></figure>
+             </li>
+             <li>그런 다음 비콘으로 돌아가서 이벤트 탭을 클릭하고 이전에 만든 이벤트로 이동한 다음 기본 데이터 설정에서 라이브 이벤트의 작업 ID를 붙여 넣습니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/17-beacon-job-id.png"/></figure>
+            <p>그런 다음<strong>스트림</strong>탭에서 새 스트림을 만듭니다. <strong>스트림 비디오 ID</strong> , 붙여 넣기<strong>비디오 ID</strong>이전에 만든 Video Cloud 이벤트에서</p>
+            <p>다음 정보를 입력합니다.</p>
+            <ul>
+                <li>비디오를 게시할 수 있는 장치 수를 선택합니다.</li>
+                <li>변경<strong>스트림 유형</strong>에: <strong>라이브</strong></li>
+                <li>그리고<strong>“이벤트 업데이트”</strong>페이지를 떠나기 전 버튼 : </li>
+            </ul>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/18-beacon-stream-id.png"/></figure>
+
+            </li>
+
+            <li>캐시를 지웁니다.
+            <p>브라이트코브 비콘 앱으로 이동하여 재생 목록과 이벤트를 선택합니다. 클릭<strong>플레이</strong> . </p>
+            <p>이제 비콘 앱에서 비디오 클라우드에서 라이브 스트리밍을 볼 수 있습니다. </p>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" width="400" height="700" src="/beacon-live/beaconimg/19-app-play.png"/></figure>
+            <p>이벤트가 종료되면 클립으로 저장하여 나중에 신호의 VOD 로 전송할 수 있습니다.</p>
+            </li>
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="Clip">비콘 라이브 이벤트에서 클립 만들기</h2>
+    <aside class="bcls-aside bcls-aside--information">나중에 스트리밍하기 위해 비디오를 VOD 녹화 비디오로 유지하려면 라이브 비콘 이벤트의 클립을 만들어야 합니다.</aside>
+    <p>라이브 모듈은 완료된 이벤트에서 비디오 클립을 만드는 기능을 제공합니다. 라이브 이벤트가 진행되는 동안에도 클립을 만들 수 있습니다. </p>
+    <p>전체 클리핑 기능 목록을 보려면<a href="https://live.support.brightcove.com/live-module/creating-video-clip-using-live-module.html">라이브 모듈을 사용하여 비디오 클립 만들기</a>설명서를 참조하십시오.</p>
+
+    <ol class="bcls-tasklist-restart">
+
+        <li>라이브 모듈에서<strong>클립 생성</strong>왼쪽 패널의 탭
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/20-create-clip.png"/></figure>
+        </li>
+        <li>클리핑 버튼 또는 바로 가기 키를 사용하여 클립의 시작점과 끝점을 설정합니다. 또는<strong>저장 버튼</strong>전체 비디오를 유지합니다. </li>
+        <li>클립 비디오 속성을 입력합니다.
+            <ul>
+                <li><strong>클립 이름</strong> - 클립의 이름</li>
+                <li><strong>간단한 설명</strong> - 클립에 대한 설명</li>
+                <li><strong>태그</strong> - 클립과 연결할 태그</li>
+                <li><strong>참조 ID</strong> - 클립에 할당할 참조 ID</li>
+                <li><strong>소스 광고 중단 콘텐츠 제거</strong> - 이 옵션은 클립 내에서 트리거된 광고 나누기를 제거하여 프로그램 콘텐츠만 유지합니다. 참고: 소스 광고 중단 제거 확인란은 스트림이 SSAI를 사용하도록 설정된 경우에만 나타납니다.</li>
+
+            </ul>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/21-create-clip-menu.png"/></figure>
+
+        </li>
+        <li><strong>클립 만들기를</strong>클릭합니다. 클립의 코드 변환 프로세스가 시작됩니다. 클립은 계정의 기본 인제스트 프로필을 사용하여 코드 변환됩니다.
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/22-clip-name.png"/></figure>
+        </li>
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="ClipToBeacon">클립을 비콘에 재생 가능한 스트림 비디오로 추가합니다. </h2>
+
+    <ol class="bcls-tasklist-restart">
+
+        <li>번호 가져가<strong>신분증</strong>생성 된 클립의 : 
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/23-control-room-id.png"/></figure>
+        </li>
+        <li>Beacon 플랫폼에서<strong>이벤트</strong>탭을 선택하고<strong>스트림</strong>메뉴에서<strong>스트림 유형</strong>라이브에서 스트림으로의 드롭 다운 및<strong>스트림 비디오 ID</strong>옵션, 붙여 넣기<strong>신분증</strong> Live 플랫폼의 Clip 이벤트에서 방금 복사 한 번호입니다. 
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/24-beacon-stream-id.png"/></figure>
+        </li>
+
+        <li><strong>기본 데이터</strong>탭을 클릭하고<strong>상태를</strong><strong>종료에서</strong><strong>완료로</strong>변경합니다. 떠나기 전에<strong>이벤트 업데이트</strong>페이지 하단의 버튼을 클릭하면<strong>플레이</strong>이벤트 녹화를 보려면 앱에서 버튼을 사용할 수 있습니다.
+         <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" width="400" height="700" src="/beacon-live/beaconimg/25-beacon-app-play-button.png"/></figure> 
+        </li>
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="SEP">(정적 진입점) SEP 라이브 이벤트</h2>
+    <p>SEP는 주간 프로그램과 같이 이벤트가 반복해서 시작될 때 활성화/비활성화할 수 있는 반복 이벤트입니다. 이 이벤트는 모두를위한 하나로 사용할 수 있습니다. <strong>라이브 작업 ID</strong> Beacon 앱에서 여러 채널로 전송할 수 있습니다.</p>
+
+    <aside class="bcls-aside bcls-aside--information">
+        <ul>
+            <li>반복 이벤트를 만들면 Media 모듈에서 해당 이벤트에 대한 비디오가 자동으로 만들어집니다. 이 비디오는 이벤트가 재발될 때마다 필요하므로 삭제하지 마십시오.</li>
+            <li>인코더가 시작되기 전에 반복 이벤트를 활성화해야 합니다.</li>
+        </ul>
+    </aside>
+
+        <p>반복 이벤트를 만들려면 라이브 이벤트를<strong>만들 때 [정적 진입점 (SEP) 을 사용하여 반복 이벤트로</strong>만들기] 옵션을 선택한 다음 [ <strong>이벤트 만들기</strong> ] 를 클릭합니다.</p>
+        <ol class="bcls-tasklist-restart">
+
+            <li>라이브 플랫폼에서<strong>새로운 이벤트 생성</strong> . 이벤트 생성 방법에 대한 자세한 내용은 다음을 참조하십시오. <a href="https://live.support.brightcove.com/live-module/creating-and-managing-live-events-using-live-module.html">선적 서류 비치</a> . </li>
+            <li>확장<strong>고급 옵션</strong> , 활성화<strong> "정적 진입 점 (SEP)을 사용하여이 이벤트를 반복 이벤트로 생성"</strong>선택권. SEP에 대한 자세한 내용을 보려면<a href="https://live.support.brightcove.com/live-module/creating-and-managing-live-events-using-live-module.html#work_recurring">여기.</a>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/26-sep.png"/></figure> 
+            </li>
+
+            <li>이미 SEP 이벤트가있는 경우<strong>대기</strong>탭, 당신은 할 수 있습니다<strong>활성화 / 비활성화</strong>라이브 관제실에서 가져옵니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/27-control-room-activate.png"/></figure> 
+            </li>
+            <li>복사<strong>라이브 작업 ID</strong>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/28-control-room-jobid.png"/></figure> 
+            </li>
+            <li>브라이트코브 비콘 플랫폼으로 돌아가서 이름과 예약된 시간을 제공하는 이벤트를 구성합니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/beacon-live/beaconimg/29-beacon-calendar.png"/></figure>
+            </li>
+            <li>이벤트 날짜 및 시간은 다음 형식이어야 합니다.
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" width="300" height="200" src="/beacon-live/beaconimg/30-date-format.png"/></figure>
+            </li>
+            <li><strong>이벤트 업데이트</strong>버튼을 클릭합니다.</li>
+            </ol>
+            <p>브라이트코브 비콘 플랫폼에서 원하는 모든 이벤트 채널을 사용하여 이 프로세스를 수행할 수 있으며, 모든 이벤트 채널은 동일한 라이브 이벤트 전송에서 스트리밍되지만 각 이벤트 설정에서 조정한 날짜 및 시간이 서로 다릅니다.</p>
+
+    </section>
+
+  
+</article>
+
+
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav" id="right_side_nav">
+        <h6 class="toc">페이지 내용</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="last-updated">
+  20209월 29일에 마지막으로 업데이트한 페이지
+</div>
+
+
+
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>브라이트코브 지원</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">시스템 상태</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">고객 지원 문의</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">문서화</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>교육</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">온라인 강좌</a>
+          </li>
+          <li>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">강좌 등록</a>
+          </li>
+          <li>
+            <a href="https://university.brightcove.com/">브라이트코브 대학교</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">브라이트코브닷컴</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">연락처</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> 브라이트코브 Inc. 모든 판권 소유.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">개인 정보 보호</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">이용 약관</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id="talla_wrapper">
+  <p style="text-align: right;position: relative;"><button style="background:rgb(2, 28, 146);color:Snow;padding:.3rem;position:fixed;right:0;bottom:1em;z-index:9999999" onclick="javascript:displayChat()">궁금한 사항이 있으십니까? </button> </p>
+  <div id="talla_chat">
+</div>
+</div>
+<script>
+      
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documenation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder
+    maxSuggestions: 5, // Maximum number of suggestions to show
+    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+  
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+      window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/js/sajari-search-foot.js"></script>
+  
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <script src="https://assets.talla.com/latest/embeddedjs/talla.js"></script>
+  <script src="/assets/js/talla-init.js"></script>
+  <style>
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+</body>
+
+</html>
