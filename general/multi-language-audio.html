@@ -1,0 +1,81 @@
+
+---
+title: 다중 언어 오디오
+parent: General Information
+layout: staging
+---
+<article class="bcls-article">
+  <h1>다국어 오디오</h1>
+  <summary>이 기능을 사용하면 여러 오디오 언어, 설명 또는 주변 오디오 경험 트랙을 실시간 재생에 사용할 수 있습니다.</summary>
+  <section class="bcls-section">
+
+    <h2 id="Prerequisites">전제 조건:</h2>
+    <ul>
+        <li>정의<strong> PID(패킷 식별자)</strong>인코더의 각 오디오 트랙에 대해</li>
+        <li>현재는 RTP 입력 형식 만 지원됩니다. 라이브 이벤트<strong>생성</strong>페이지에서 이 섹션을 활성화하려면<strong>고급 옵션</strong>섹션으로 이동하여 RTP ( <strong>실시간 전송 프로토콜) 를 선택합니다. </strong><strong>입력 형식</strong>선택기 아래에 있습니다. </li>
+        <li><strong>CIDR 화이트리스트</strong>섹션에서 IP를 입력합니다. <strong></strong> 0.0.0.0/0을 사용하여 RTP 엔드포인트에 연결합니다. 입력 형식이 RTP로 설정되지 않은 경우 다중 언어 버튼이 비활성화됩니다. </li>
+
+
+        <aside class="bcls-aside bcls-aside--information">메모: 
+            <ul>
+            
+            <li><strong>PID (패킷 식별자)</strong>를 정의하는 방법에 대한 자세한 내용은 오디오 트랙의 인코더 설명서를 참조하십시오. </li>
+            <li>SRT에 대한 지원은 조만간 추가 될 예정입니다.</li>
+            <li>RTP 입력을 설정하는 방법에 대한 자세한 내용은 고급 옵션<a href="https://live.support.brightcove.com/live-module/creating-and-managing-live-events-using-live-module.html#advanced" target="_blank">구성 설명서를 참조하십시오</a> .
+            </li>
+        </ul>
+        
+        </aside>
+    </ul>
+
+
+    </section>
+    <section class="bcls-section">
+
+        <h2 id="add-audio">라이브 이벤트에 오디오 트랙 추가 </h2>
+
+        <p>새 라이브 이벤트를 만들 때:</p>
+
+    <ol class="bcls-tasklist-restart">
+
+        <li><strong>오디오 트랙</strong>섹션을 엽니다.</li>
+        <li>오디오 트랙<strong>추가</strong>버튼을 클릭합니다.
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/multi-language-audio/audio-track-section.png" /></figure>
+
+        </li>
+        <li>새 오디오 트랙을 추가하려면 필드를 채우십시오. 별표 (*)가있는 필드는 필수입니다.
+         <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/multi-language-audio/audio-track-fields.png" /></figure>
+            <ul>
+                <li><strong>기본값</strong> : 기본 오디오 트랙을 선택합니다.</li>
+                <li><strong>언어*</strong> : 새 오디오 트랙의 언어 코드를 입력하십시오. 예: en, es, CY-GB 등</li>
+                <li><strong>PID*</strong> : 인코더에서 이전에 정의한 PID 코드를 입력하여 수신 스트림의 오디오 트랙을 올바른 언어 및 변형으로 동기화합니다. 참고: 각 오디오 트랙에는 고유 한 PID가 필요합니다. </li>
+                <li><strong>변형</strong> : 오디오 트랙의 변형을 나타냅니다. <strong>메인, 해설, 대체, 캡션, 자막, 보충, 더빙 등이 될 수</strong>있습니다. </li>
+                <li><strong>라벨</strong> : 트랙의 이름을 입력하십시오. 예: 영어, 스페인어 등 레이블 필드를 비워두면 언어 코드가 레이블로 사용됩니다.</li>
+            </ul>
+        </li>
+        <li><strong>+</strong>및<strong> -</strong>버튼을 클릭하면 오디오 트랙을 추가하거나 제거할 수 있습니다. <aside class="bcls-aside bcls-aside--information">참고: 오디오 트랙을 최대 6개까지 추가할 수 있습니다. 트랙을 더 추가해야 하는 경우 지원팀에 문의하십시오.</aside>
+        
+        </li>
+    
+    </ol>
+
+    </section>
+
+    <section class="bcls-section">
+
+        <h2 id="change-audio">오디오 트랙 변경</h2>
+
+        <ol class="bcls-tasklist-restart">
+            <li>다중 오디오 트랙이 올바르게 설정된 경우 플레이어에는 트랙 사이를 전환하는 데 사용할 수있는 헤드폰 아이콘이 표시됩니다.
+
+                <figure class="bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/multi-language-audio/player-multi-language.png" /></figure>
+
+            </li>
+
+        </ol>
+
+        </section>
+
+
+
+</article>

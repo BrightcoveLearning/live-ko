@@ -1,0 +1,161 @@
+
+---
+title: 'SEP 스트림의 활성화/비활성화 스케줄링'
+description: '이랑<code translate="No">JobStartStop</code>엔드포인트에서 기존 라이브의 활성화 및 비활성화를 예약할 수 있습니다. <a href="/live-api/guides/live-api-static-entry-points.html"> 9월</a>직업. 지정된 시간에 당사 시스템은 귀하를 대신하여 Job을 활성화하고 비활성화하는 데 필요한 API 호출을 수행합니다.'
+parent: Guides 
+grandparent: Live API
+layout: staging
+---
+
+<!-- Remember to change API reference links when going live -->
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+	<section class="bcls-section">
+		<h2 id="Requirements">요구 사항</h2>
+		<ul>
+			<li>계정의 라이브 API 키입니다.</li>
+			<li>라이브 계정에는 스케줄러 재정의가 활성화되어 있어야합니다.</li>
+			<li><code translate="no">“정적”이 있는 기존 라이브 작업: true</code> (자세한 내용은<a href="/live-api/guides/live-api-static-entry-points.html">정적 진입점 작업</a>참조).</li>
+		</ul>
+		<aside class="bcls-aside bcls-aside--information">라이브 모듈에서 활성화 및 비활성화를 예약할 수도 있습니다. <a href="/live-module/scheduling-live-event.html">관제실에서 라이브 이벤트 자동 시작/중지</a>자세한 내용은</aside>
+	</section>
+	<section class="bcls-section">
+		<h2 id="Create_a_scheduler">스케줄러 만들기</h2>
+		<p><code translate="no">2021-04-02T14:00:00 + 00:00 에서 시작되는 2시간 이벤트를 예약하고 싶다고 가정해 보겠습니다</code> .</p>
+
+		<p>타임 스탬프는 초 단위의 unix 타임 스탬프로 UTC 형식이어야합니다. 당신이 사용할 수있는<a href="https://www.unixtimestamp.com/" rel="nofollow"> https://www.unixtimestamp.com/</a>변환을 위해.</p>
+		<aside class="bcls-aside bcls-aside--information"><a href="https://live.support.brightcove.com/live-api/guides/live-api-static-entry-points.html#Limitations" rel="nofollow">여기에 설명된 활성화 시간 제한은 예약된</a>활성화에도 여전히 적용되므로 원하는 시작 시간 60초 전에 시간을 예약하는 것이 좋습니다.
+			<p>이 예에서는 예정된 시작 시간 5 분 전을 선택합니다.</p>
+			<pre><code translate="no">시작: 2021-04-02T13:55시+00시 = 1617386100 정거장: 2021-04-02T16:00시+00:00 = 1617393600</code></pre>
+		</aside>
+		<p>스케줄러를 구현하려면 다음<code translate="No">POST</code>요청을 수행합니다.</p>
+		<pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop</code></pre>
+		<h3>헤더</h3>
+		<pre class="line-numbers"><code class="language-bash" translate="No">Content-Type: application/json
+		X-API-KEY: <span class="bcls-input">{your API Key}</span></code></pre>
+		<h3>요청 본문</h3>
+		<pre class="line-numbers"><code class="language-json" translate="No">{
+			"job_id": "your Job ID",
+			"activation": {
+				"time_utc": 1617386100
+			},
+			"deactivation": {
+				"time_utc": 1617393600
+			},
+			"description": "My Wednesday broadcast"
+		}</code></pre>
+			<details>
+				<summary><h3>샘플 응답</h3></summary>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"account_id": "1752604059001",
+	"activation": {
+		"state": "pending",
+		"time_utc": 1617386100
+	},
+	"deactivation": {
+		"state": "pending",
+		"time_utc": 1617393600
+	},
+	"description": "My Wednesday broadcast",
+	"job_id": "15981d93877e490185e6ebc9af2c79a3",
+	"type": "jobstartstop",
+	"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+}</code></pre>
+			</details>
+		</section>
+		<section class="bcls-section">
+			<h2 id="Update_a_scheduler">스케줄러 업데이트</h2>
+			<p>업데이트할 수 있습니다. <code translate="no">활성화</code>및/또는<code translate="no">비활성화</code>작업이<strong translate="no">보류 중</strong>상태 ( <code translate="no"> "상태": "보류 중"</code> ). 이렇게 하려면<code translate="no"> PUT</code>요청을 다음 주소로 보냅니다.</p>
+<pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop/<span class="bcls-input">{workflow_id}</span></code></pre>
+			<p>헤더는 위에 표시된<code translate="no"> POST</code>요청과 동일합니다.</p>
+			<h3>요청 본문</h3>
+			<p>요청 본문 객체에서<code translate="no">활성화</code>및/또는<code translate="no">비활성화</code>필드만 포함합니다.</p>
+			<p>예를 들어 예정보다 30 분 일찍 이벤트를 중지하려면 다음을 수행하십시오.</p>
+			<h3>요청 본문</h3>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"deactivation": {
+		"time_utc": 1617391800
+	}
+}</code></pre>
+<details>
+	<summary><h3>샘플 응답</h3></summary>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"account_id": "1752604059001",
+	"activation": {
+		"state": "pending",
+		"time_utc": 1617386100
+	},
+	"deactivation": {
+		"state": "pending",
+		"time_utc": 1617391800
+	},
+	"description": "My Wednesday broadcast",
+	"job_id": "15981d93877e490185e6ebc9af2c79a3",
+	"type": "jobstartstop",
+	"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+}</code></pre>
+</details>
+</section>
+<section class="bcls-section">
+  <h2 id="cancel_the_scheduler">스케줄러 취소</h2>
+  <p><code translate="no">DELETE</code>요청으로 활성화 및 비활성화를 취소할 수 있습니다.</p>
+	<pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop/<span class="bcls-input">{workflow_id}</span></code></pre>
+	<p>활성화 후에이 작업을 수행하여 비활성화를 취소 할 수도 있습니다.</p>
+	<h3>헤더</h3>
+	<p>유일한 필수 헤더는 다음과 같습니다.</p>
+	<pre class="line-numbers"><code class="language-bash" translate="No">X-API-KEY: <span class="bcls-input">your API Key</span></code></pre>
+	<h3>요청 본문</h3>
+	<p>이 요청에 대한 요청 본문이 없습니다.</p>
+	<details>
+		<summary><h3>샘플 응답</h3></summary>
+	<pre class="line-numbers"><code class="language-json" translate="No">{
+		"account_id": "1752604059001",
+		"activation": {
+			"state": "cancelled",
+			"time_utc": 1617386100
+		},
+		"deactivation": {
+			"state": "cancelled",
+			"time_utc": 1617391800
+		},
+		"description": "My Wednesday broadcast",
+		"job_id": "15981d93877e490185e6ebc9af2c79a3",
+		"type": "jobstartstop",
+		"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+	}</code></pre>
+	</details>
+</section>
+<section class="bcls-section">
+  <h2 id="Notifications">알림</h2>
+  <p>워크 플로를 만들 때 선택적으로 알림을 구성 할 수 있습니다. <code translate="no">POST를 수행할 서비스에 대한 URL을</code>제공해야 합니다. 스케줄러가 활성화 및 비활성화 호출을 할 때 알림을 보냅니다. 활성화 및/또는 비활성화<code translate="no"></code> n초 전에 알림을 받도록 구성할 수도 있습니다. 자세한 내용은<a href="/live-api/guides/live-scheduler-notifications.html">라이브 스케줄러 알림을</a>참조하십시오.</p>
+	<details>
+		<summary><h3>샘플 요청 본문</h3></summary>
+	<pre class="line-numbers"><code class="language-json" translate="No">{
+		"job_id": "your Job ID",
+		"activation": {
+			"time_utc": 1612274100,
+			<span class="bcls-highlight">"notification": 600</span>
+		},
+		"deactivation": {
+			"time_utc": 1612281600,
+			<span class="bcls-highlight">"notification": 600</span>
+		},
+		"description": "My Tuesday broadcast",
+		<span class="bcls-highlight">"notification_url": "http://example.com/live/jobstartstop/callbacks"</span>
+	}</code></pre>
+	</details>
+</section>
+<section class="bcls-section">
+	<h2 id="related_topics">관련 주제</h2>
+	<ul>
+		<li><a href="/live-api/guides/live-scheduler-stop-start.html">SEP 스트림의 활성화 / 비활성화 예약</a></li>
+		<li><a href="/live-api/guides/live-scheduler-clips.html">라이브 스트림을위한 클립 생성 예약</a></li>
+		<li><a href="/live-api/guides/live-scheduler-notifications.html">라이브 스케줄러 알림</a></li>
+		<li><a href="/live-api/guides/live-api-static-entry-points.html">정적 진입 점 (SEP) 작업</a></li>
+		<li><a href="/live-api/references/reference-staging.html">라이브 API 참조</a></li>
+		<li><a href="/live-module/scheduling-live-event.html">관제실 라이브 이벤트 자동 시작 / 중지</a></li>
+	</ul>
+</section>
+</article>

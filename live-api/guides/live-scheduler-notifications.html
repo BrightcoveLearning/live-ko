@@ -1,0 +1,133 @@
+
+---
+title: '라이브 스케줄러 알림 스케줄러로 워크플로를 만들'
+description: '때 선택적으로 알림을 구성할 수 있습니다.'
+parent: Guides 
+grandparent: Live API
+layout: staging
+---
+
+<!-- Remember to change API reference links when going live -->
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+	<section class="bcls-section">
+		<h2 id="Introduction">소개</h2>
+		<p>작업을 완료한 후 스케줄러는 http 메소드<code translate="no"> POST를 사용하여 구성된 엔드포인트에 어떤 작업이 수행되었는지 및 성공/실패에 대한 세부 정보와</code>함께 알림을 보냅니다.</p>
+		<p>예정된 작업에 대한 사전 알림을 구성 할 수도 있습니다. 참조<a href="/live-api/references/reference-staging.html">라이브 API 참조</a>알림 URL 및 설정 지정에 대한 자세한 내용과 SEP 작업의 시작/중지 시간 예약 및 클립 예약의 차이점을 확인하십시오.</p>
+		<dl>
+			<dt><a href="/live-api/guides/live-scheduler-stop-start.html">스케줄러 시작 / 중지</a></dt>
+			<dd>
+				<ul>
+					<li>알림 URL은 요청 본문 개체의 최상위 수준에서 정의됩니다.</li>
+					<li>알림은<code translate="no">활성화</code>및<code translate="no">비활성화</code>객체에서 예약됩니다 (알림을 보내기 위한 이벤트 전 시간 (초).</li>
+				</ul>
+				<p><strong>예</strong></p>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"job_id": "your Job ID",
+	"activation": {
+		"time_utc": 1612274100,
+		<span class="bcls-highlight">"notification": 600</span>
+	},
+	"deactivation": {
+		"time_utc": 1612281600,
+		<span class="bcls-highlight">"notification": 600</span>
+	},
+	"description": "My Tuesday broadcast",
+	<span class="bcls-highlight">"notification_url": "http://example.com/live/jobstartstop/callbacks"</span>
+}</code></pre>
+			</dd>
+			<dt><a href="/live-api/guides/live-scheduler-clips.html">클립 스케줄러</a></dt>
+			<dd>
+				<ul>
+					<li>알림 URL은 요청 본문 개체의 최상위 수준에서 정의됩니다.</li>
+					<li>알림은<code translate="no">클립</code>객체에서 예약됩니다 (작업이 알림 전송을 시작하기까지의 시간 (초).</li>
+				</ul>
+				<p><strong>예</strong></p>
+<pre><code class="language-json" translate="no">{ "job_id": "작업 ID", "설명": “내 예약된 클립”, <span class="bcls-highlight">“알림_URL”: "http://example.com/live/clip/callbacks"</span> , “클립”: { "output": { "label": "My Scheduled Clip", "start_time": 1612878900, "end_time": 1612879800, "videocloud": { "video": { "name": "My Scheduled Clip" } }}, “타임_utc”: 1612879800, <span class="bcls-highlight">“알림”: 600</span> }}</code></pre>
+						</dd>
+		</dl>
+	</section>
+	<section class="bcls-section">
+		<h2 id="notification_body">알림 본문</h2>
+		<p>서버가 notification <code translate="no"> ation_url에 알림을</code>보내면 요청에 JSON 본문이 포함됩니다. 필드는 아래 표에 자세히 설명되어 있습니다.</p>
+			<table class="bcls-table">
+				<caption class="bcls-caption--table">알림 본문 필드</caption>
+				<thead class="bcls-table__head">
+					<tr>
+						<th>동작</th>
+						<th>액션 이름. <a href="#Actions">동작 보기</a>
+						</th>
+					</tr>
+					<tbody class="bcls-table__body">
+						<tr>
+						<td>워크 플로우</td>
+						<td>작업 완료 후 업데이트 된 워크 플로. 구조는 워크 플로 유형에 따라 다릅니다.</td>
+					</tr>
+					<tr>
+						<td>오류</td>
+						<td>작업을 완료하는 동안 오류가 발생하면이 필드에 오류가 포함됩니다. 값은 작업 유형에 따라 다릅니다.</td>
+					</tr>
+				</tbody>
+		</table>
+		<h3 id="actions">행위</h3>
+		<p>다음 표에는 워크 플로 유형별 작업이 자세히 설명되어 있습니다.</p>
+		<table class="bcls-table">
+			<caption class="bcls-caption--table">행위</caption>
+			<thead class="bcls-table__head">
+				<tr>
+					<th>이름</th>
+					<th>워크 플로우 유형</th>
+					<th>기술</th>
+				</tr>
+				</thead>
+			<tbody class="bcls-table__body">
+				<tr>
+					<td><code translate="No">notify-activate</code></td>
+					<td><code translate="No">jobstartstop</code></td>
+					<td>작업이 곧 활성화 될 것이라는 알림을받습니다.</td>
+				</tr>
+				<tr>
+					<td><code translate="No">activate</code></td>
+					<td><code translate="No">jobstartstop</code></td>
+					<td>작업 활성화가 완료되었습니다. <code translate="no">“오류”가</code>있으면 활성화에 실패하고 비활성화가 취소됩니다.
+					</td>
+				</tr>
+				<tr>
+					<td><code translate="No">notify-deactivate</code></td>
+					<td><code translate="No">jobstartstop</code></td>
+					<td>작업이 곧 활성화 될 것이라는 알림을받습니다.</td>
+				</tr>
+				<tr>
+					<td><code translate="No">deactivate</code></td>
+					<td><code translate="No">jobstartstop</code></td>
+					<td>작업 비활성화가 완료되었습니다. <code translate="no">“error</code>”가 있으면 해제에 실패했습니다.
+					</td>
+				</tr>
+				<tr>
+					<td><code translate="No">notify-clip</code></td>
+					<td><code translate="No">clip</code></td>
+					<td>클립이 곧 요청 될 것이라는 알림을받습니다.</td>
+				</tr>
+				<tr>
+					<td><code translate="No">clip</code></td>
+					<td><code translate="No">clip</code></td>
+					<td>클립 요청이 완료되었습니다. <code translate="no">“error”가</code>있으면 요청이 실패했습니다.
+					</td>
+				</tr>
+		</tbody>
+	</table>
+	</section>
+	<section class="bcls-section">
+		<h2 id="related_topics">관련 주제</h2>
+		<ul>
+			<li><a href="/live-api/guides/live-scheduler.html">개요: 라이브 스케줄러</a></li>
+			<li><a href="/live-api/guides/live-scheduler-stop-start.html">SEP 스트림의 활성화 / 비활성화 예약</a></li>
+			<li><a href="/live-api/guides/live-scheduler-clips.html">라이브 스트림을위한 클립 생성 예약</a></li>
+			<li><a href="/live-api/guides/live-api-static-entry-points.html">정적 진입 점 (SEP) 작업</a></li>
+			<li><a href="/live-api/references/reference-staging.html">라이브 API 참조</a></li>
+			<li><a href="/live-module/scheduling-live-event.html">관제실 라이브 이벤트 자동 시작 / 중지</a></li>
+		</ul>
+	</section>
+</article>

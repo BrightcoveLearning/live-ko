@@ -1,480 +1,25 @@
-﻿<!doctype html>
-<html lang="ko">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  
-  <title>라이브 분석 검토</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">  
-  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
-  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
-  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
-  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
-  <link rel="stylesheet" href="/assets/css/local.css">
-  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
-  <script src="/assets/js/sajari-head.js"></script>
-</head>
-
-<body class="body">
-
-<header>
-  <div class="div-header">
-    <a href="/"><img class="product-logo" src="https://support.brightcove.com/site-assets/images/site/product-logos/Live_Logo.svg" alt="제품 로고" style="max-height: 100px;max-width: 232px;"/></a>
-<!-- GTranslate: https://gtranslate.io/ -->
-<select onchange="doGTranslate(this);"><option value="">언어 선택</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
-
-<script>
-/* <![CDATA[ */
-function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
-/* ]]> */
-</script>
-
-    
-
-
-    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="지원"/> 고객 지원 문의</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="시스템 상태"/> 시스템 상태</a></span> <br/>
-    
-  </div>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb arr-right">
-      
-      <li class="breadcrumb-item"><a href="/">홈</a></li>
-      
-      
-      
-      <li class="breadcrumb-item"><a href="/live-module/">라이브 모듈</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">라이브 분석 검토</li>
-    </ol>
-  </nav>
-</header>
-<div class="container">
-    <div class="row">
-      <div class="col-sm-3 left-side-bar">
-        <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
-					<option value="">기타 브라이트코브 문서</option>
-					
-						
-							<option value="https://support.brightcove.com">설명서 홈</option>
-						
-					
-						
-							<option value="https://audience.support.brightcove.com">브라이트코브 대상</option>
-						
-					
-						
-							<option value="https://beacon.support.brightcove.com">브라이트코브 비콘</option>
-						
-					
-						
-							<option value="https://campaign.support.brightcove.com">브라이트코브 캠페인</option>
-						
-					
-						
-							<option value="https://engage.support.brightcove.com">브라이트코브 참여</option>
-						
-					
-						
-							<option value="https://live.support.brightcove.com">Brightcove Live</option>
-						
-					
-						
-							<option value="https://gallery.support.brightcove.com">Brightcove Gallery</option>
-						
-					
-						
-							<option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
-						
-					
-						
-							<option value="https://social.support.brightcove.com">브라이트코브 소셜</option>
-						
-					
-						
-							<option value="https://studio.support.brightcove.com">비디오 클라우드 스튜디오</option>
-						
-					
-						
-							<option value="https://player.support.brightcove.com">브라이트코브 플레이어 개발</option>
-						
-					
-						
-							<option value="https://apis.support.brightcove.com">비디오 클라우드 플랫폼 API</option>
-						
-					
-						
-							<option value="https://sdks.support.brightcove.com">비디오 클라우드 디바이스 SDK</option>
-						
-					
-						
-							<option value="https://integrations.support.brightcove.com">통합 및 CMS 커넥터</option>
-						
-					
-						
-							<option value="https://general.support.brightcove.com">비디오 클라우드 일반 정보</option>
-						
-					
-						
-							<option value="https://zencoder.support.brightcove.com">Zencoder</option>
-						
-					
-				</select>
-        <nav class="sidenav" id="side_nav">
-          
-            
-            <h5><a href="/index.html">홈</a></h5>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/get-started/index.html">시작하기 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/get-started/brightcove-live-training-videos.html">브라이트코브 라이브 교육 비디오</a></li>
-                  
-                
-                  
-                    <li><a href="/get-started/delivering-live-streams.html">라이브 스트림 전송</a></li>
-                  
-                
-                  
-                    <li><a href="/get-started/live-module-guidelines-and-best-practices.html">라이브 모듈 지침 및 모범 사례</a></li>
-                  
-                
-                  
-                    <li><a href="/get-started/step-step-using-live-module-open-broadcaster-software-obs.html">단계별: OBS와 함께 라이브 모듈 사용</a></li>
-                  
-                
-                  
-                    <li><a href="/get-started/step-step-using-live-module-telestream-wirecast.html">단계별: 와이어캐스트와 함께 라이브 모듈 사용</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/general/index.html">일반 정보 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/general/live-drm.html">라이브 DRM</a></li>
-                  
-                
-                  
-                    <li><a href="/general/live-platforms-comparison-matrix.html">라이브 플랫폼 비교 매트릭스</a></li>
-                  
-                
-                  
-                    <li><a href="/general/live-video-glossary.html">라이브 비디오 용어집</a></li>
-                  
-                
-                  
-                    <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
-                  
-                
-                  
-                    <li><a href="/general/supported-encoders-live-events.html">라이브 이벤트에 대해 지원되는 인코더</a></li>
-                  
-                
-                  
-                    <li><a href="/general/creating-live-stream-using-akamai-stream-packaging-and-telestream-wirecast.html">Akamai 스트림 패키징 및 와이어캐스트 사용</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/live-module/index.html">라이브 모듈 사용<strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/live-module/client-side-preroll-with-live-ssai.html">라이브 SSAI를 사용한 클라이언트측 프리롤 광고</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/creating-and-managing-live-events-using-live-module.html">라이브 이벤트 생성 및 관리</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/creating-video-clip-using-live-module.html">비디오 클립 만들기</a></li>
-                  
-                
-                  
-                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-avaya-conference-brightcove-live.html">브라이트코브 라이브 어바이어 컨퍼런스 개최</a></li>
-                  
-                
-                  
-                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-cisco-webex-conference-brightcove-live.html">시스코 웹벡스 - 브라이트코브 라이브 호스트</a></li>
-                  
-                
-                  
-                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-zoom-conference-brightcove-live.html">브라이트코브 라이브로 호스트 줌</a></li>
-                  
-                
-                  
-                    <li><a href="https://integrations.support.brightcove.com/web-conferencing/host-inxpo-live.html">브라이트코브 라이브에서 INXPO 이벤트 호스팅</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/implementing-server-side-ads-live-module.html">서버 측 광고 구현</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/live-redundancy.html">라이브 이중화</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/publishing-live-event-facebook.html">페이스북에 라이브 이벤트 게시</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/publishing-live-event-youtube.html">YouTube에 실시간 이벤트 게시</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/reviewing-live-analytics.html">라이브 분석 검토</a></li>
-                  
-                
-                  
-                    <li><a href="/live-module/using-live-rtmp-outputs-stream-facebook-and-youtube.html">라이브 RTMP 출력 사용</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/live-api/index.html">라이브 API 작업 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/live-api/getting-started/index.html">라이브 API: 시작하기 <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/live-api/getting-started/overview-brightcove-live-api.html">개요: 라이브 API</a></li>
-                        
-                        <li><a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html">API를 사용하여 라이브 스트림 만들기</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/live-api/code-samples/index.html">라이브 API: 코드 샘플 <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/live-api/code-samples/live-api-sample-create-live-job.html">라이브 작업 만들기</a></li>
-                        
-                        <li><a href="/live-api/code-samples/quick-start-create-live-job-mpeg2-ts-input.html">MPEG2-TS 입력을 위한 라이브 작업 만들기</a></li>
-                        
-                        <li><a href="/live-api/code-samples/quick-start-using-rtmp-outputs-live-events.html">라이브 이벤트에 RTMP 출력 사용</a></li>
-                        
-                        <li><a href="/live-api/code-samples/simulated-live.html">시뮬레이션 라이브 이벤트</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/live-api/references/index.html">라이브 API: 참고 문헌 <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/live-api/references/live-api-error-messages.html">오류 메시지</a></li>
-                        
-                        <li><a href="/live-api/references/live-api-release-notes.html">릴리즈 노트</a></li>
-                        
-                        <li><a href="/live-api/references/reference.html">라이브 API 참조</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/live-api/ssai/index.html">라이브 API: SSAI <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">SSAI를 사용한 큐 포인트 및 광고 비콘</a></li>
-                        
-                        <li><a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">서버 측 광고 삽입 (SSAI)</a></li>
-                        
-                        <li><a href="/live-api/ssai/overview-player-enhancements-live-ssai.html">개요: 라이브 SSAI를 위한 플레이어 향상</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/live-api/guides/index.html">라이브 API: 가이드 <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/live-api/guides/brightcove-live-best-practices.html">브라이트코브 라이브 모범 사례</a></li>
-                        
-                        <li><a href="/live-api/guides/brightcove-live-program-ad-metadata-api.html">브라이트코브 라이브 프로그램 광고 메타데이터 API</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-creating-frame-accurate-clip.html">정확한 프레임 클립 만들기</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-creating-vod-clips.html">VOD 클립 만들기</a></li>
-                        
-                        <li><a href="/live-api/guides/getting-list-live-or-vod-jobs.html">라이브 또는 VOD 작업 목록 가져오기</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-insert-id3-timed-metadata.html">ID3 시간 제한 메타데이터 삽입</a></li>
-                        
-                        <li><a href="/live-api/guides/live-drm-live-api.html">라이브 API를 통한 라이브 DRM</a></li>
-                        
-                        <li><a href="/live-api/guides/managing-credentials-live-api.html">라이브 API에 대한 자격 증명 관리</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-notifications.html">알림</a></li>
-                        
-                        <li><a href="/general/reducing-latency-live-streams.html">라이브 스트림에 대한 지연 시간 감소</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-rtmp-outputs.html">RTMP 출력</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-static-entry-points.html">정적 진입 점</a></li>
-                        
-                        <li><a href="/live-api/guides/signed-urls-and-token-auth-live-stream.html">라이브 스트림으로 서명된 URL 및 토큰 인증</a></li>
-                        
-                        <li><a href="/live-api/guides/using-live-redundancy.html">라이브 중복성 사용</a></li>
-                        
-                        <li><a href="/live-api/guides/live-api-vod-live-event.html">VOD 라이브 이벤트에서</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/admin/index.html">계정 관리 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/admin/creating-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일 만들기</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/fields-custom-live-ingest-profiles.html">사용자 정의 라이브 인제스트 프로파일에 대한 필드</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/managing-live-settings.html">라이브 설정 관리</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/managing-api-authentication-credentials.html">API 인증 자격 증명 관리</a></li>
-                  
-                
-                  
-                    <li><a href="/admin/standard-live-ingest-profiles.html">표준 라이브 인제스트 프로파일</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/release-notes/index.html">릴리즈 노트 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    <li><a href="/release-notes/live-api-release-notes.html">라이브 릴리스 노트</a></li>
-                  
-                
-                  
-                    <li><a href="/release-notes/known-issues.html">알려진 문제</a></li>
-                  
-                
-              </ul>
-            
-          
-            
-              <h5 class="submenu-header"><a href="/support/index.html">지원 <strong>+</strong></a></h5>
-              <ul class="sidenav-submenu" style="display:none;">
-                
-                  
-                    
-                  
-                
-                  
-                    <li><a href="/support/viewing-brightcove-system-status-page.html">브라이트코브 시스템 상태 페이지 보기</a></li>
-                  
-                
-                  
-                    <li><a href="/support/contact-sales.html">영업팀에 문의</a></li>
-                  
-                
-                  
-                    <li><a href="/support/opening-case-with-brightcove-support.html">지원 사례 열기</a></li>
-                  
-                
-              </ul>
-            
-          
-      </nav>
-    </div>
-    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
-  <!-- bootstrap layout -->
-
-<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="네비게이션 메뉴"/></p>
-
-<!-- search bar -->
-<div id="nav-search-box" style="margin-top: 1rem;"></div>
-<!-- in-page navigation for narrow screens -->
-<details class="centered-inpage-nav" id="centered_inpage_nav">
-  <summary><h6 class="toc">페이지 내용</h6></summary>
-  <nav id="centered_toc"></nav>
-  <ul id="centered_in_page_toc" class="list-none"></ul>
-</details>
-<!-- open in new tab/window -->
-<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="새 탭에서 열기" style="margin-top:4em;width: 1.5em;"/></a>
-
-
-
-  
-    
-
-
+---
+title: 라이브 분석 검토
+parent: Live Module
+---
 <article class="bcls-article">
   <h1>라이브 분석 검토</h1>
-  <summary>이 항목에서는 라이브 모듈에서 제공하는 라이브 분석에 대해 배웁니다.</summary>
+  <summary>이 주제에서는 라이브 모듈에서 제공하는 라이브 분석에 대해 학습합니다.</summary>
 
 
   <section class="bcls-section">
-<p>라이브 모듈은 라이브 스트리밍 이벤트 또는 채널 실적에 대한 보고서를 제공합니다. 실시간 동시 시청자 및 시청자의 스트림 시간, 지역 및 장치에 대한 집계된 사후 이벤트 데이터를 포함한 정보를 사용할 수 있습니다.</p>
+    <h2 id="Overview">개요</h2>
+<p>라이브 모듈은 라이브 스트리밍 이벤트 또는 채널 성능에 대한 보고서를 제공합니다. 실시간 동시 시청자와 시청자 스트림 시간, 지역 및 기기에 대한 집계 된 이벤트 후 데이터를 포함한 정보를 사용할 수 있습니다.</p>
 
-<p>참고:</p>
+  <p>라이브 분석을 보려면 다음 단계를 따르십시오.</p>
+  <ol class="bcls-tasklist">
+    <li><strong>라이브</strong>모듈을 엽니다.</li>
+    <li>이벤트 이름을 클릭하십시오.</li>
+    <li>딸깍 하는 소리&nbsp;<strong>보고</strong>&nbsp;왼쪽 탐색에서.</li>
+  </ol>
 
-<ul>
-	<li>뿐<strong>동시 시청자</strong>실시간으로 제공됩니다. 다른 메트릭은 표준 분석과 유사한 지연으로 수집 및 집계됩니다.</li>
-	<li><strong>동시 시청자</strong> Brightcove Player 및 SDK와 함께 제공되는 스트림에 대해서만 정확합니다.</li>
-	<li>이벤트 종료 후 최대 32일 동안 데이터를 사용할 수 있습니다.</li>
-	<li>실시간 은 1분 간격으로 집계된 세션에 의해 정의됩니다.</li>
-	<li>반복 이벤트 (정적 진입점) 를 사용하면 최신 활성화 시작 시점부터 분석이 제공됩니다.</li>
-  <li>현재 분석 모듈은 정확한 “고유 뷰어” 데이터를 가져올 수 없으며 LIVE 모듈 분석 간에 불일치가 있습니다. 라이브 분석 UI를 사용하여 시청자 수를 확인하십시오.</li>
-  <li>
-    일부 광고 차단기는 실시간 분석 데이터가 제대로 로드되지 않도록 합니다.
-    <figure class="bcls-figure">
-      <img class="bcls-image" src="/assets/images/live-module/ad-blocker-blocks-live-analytics.png" alt="광고 차단기 차단 분석 데이터"/>
-      <figcaption class="bcls-caption--image">광고 차단기 차단 분석 데이터</figcaption>
-    </figure>
-    <p>광고 차단기를 비활성화하면 문제가 해결됩니다.</p>
-  </li>
-</ul>
-
-<p>라이브 분석을 보려면 라이브 모듈을 열고 이벤트 이름을 클릭 한 다음&nbsp;<strong>보고</strong>&nbsp;왼쪽 탐색에서. 분석 대시보드는 다음 섹션으로 구성됩니다.</p>
+<p>분석 대시 보드는 다음 섹션으로 구성됩니다.</p>
 
 <ul>
 	<li><a href="#snapshot">스냅 사진</a></li>
@@ -484,209 +29,79 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </section>
 
   <section class="bcls-section">
-<h2 id="snapshot">스냅샷</h2>
+<h2 id="snapshot">스냅 사진</h2>
 
-<p>스냅샷 섹션이 표시됩니다.</p>
+<p>스냅 샷 섹션이 표시됩니다.</p>
 
 <ul>
 	<li><strong>총 조회수</strong> -실시간 스트림 기간 동안의 총 조회수입니다.</li>
-	<li><strong>고유 한 시청자</strong> -스트림을 시청 한 총 고유 시청자 수. 예를 들어, 동일한 사용자가 한 시간 내에 두 번 개별 실시간 스트림에 연결하면 고유한 뷰어 1개로 계산됩니다.</li>
-	<li><strong>평균 조회 시간</strong> -주어진 세션에 대한 평균 소비 시간. 예를 들어 사용자 A가 1분의 콘텐츠를 시청하고 사용자 B가 2분의 콘텐츠를 시청하는 경우 평균 보기 시간은 1.5분입니다.</li>
-	<li><strong>총 시청 시간</strong> -에 표시된 스트림의 지속 시간 동안 소비 된 총 시간<em>시 : 분 : 초</em> .</li>
+	<li><strong>고유 한 시청자</strong> -스트림을 시청 한 총 고유 시청자 수. 예를 들어 동일한 사용자가 한 시간 내에 두 번 개별적으로 실시간 스트림에 연결하면 순 시청자 1 명으로 계산됩니다.</li>
+	<li><strong>평균 조회 시간</strong> -주어진 세션에 대한 평균 소비 시간. 예를 들어, 사용자 A가 1분 동안 콘텐츠를 감시하고 사용자 B가 2분 콘텐츠를 감시하는 경우 평균 보기 시간은 1.5분입니다.</li>
+	<li><strong>총 조회 시간</strong> - 에 표시된 스트림 기간 동안 소비된 총 시간 수 <em>시간:분:초</em>.</li>
 	<li><strong>광고 시작</strong> -광고 시작 횟수</li>
 </ul>
 
-<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-snapshot.png"/></figure>
+<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-snapshot.png" /></figure>
 
-<p>스냅샷 아래에 동시 뷰어를 표시하는 그래프가 표시됩니다. 동시 시청자는 위치에 관계없이 지정된 시간에 스트림에 연결된 세션 수를 측정합니다. 예를 들어 10명의 사용자가 라이브 에지에서 라이브 스트림을 보고 있고 5명의 사용자가 DVR 창에서 시청하는 경우 (라이브 후 10분) 분당 동시 시청자는 15명의 사용자가 됩니다.</p>
+<p>동시 뷰어를 표시하는 그래프가 스냅 샷 아래에 표시됩니다. 동시 시청자는 위치에 관계없이 특정 시간에 스트림에 연결된 세션 수를 측정합니다. 예를 들어 10 명의 사용자가 라이브 엣지에서 라이브 스트림을보고 있고 5 명의 사용자가 DVR 창에서 (실시간보다 10 분 뒤) 시청하는 경우 해당 분의 동시 시청자는 15 명의 사용자가됩니다.</p>
 
-<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-concurrent-viewers.png"/></figure>
+<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-concurrent-viewers.png" /></figure>
   </section>
 
   <section class="bcls-section">
-<h2 id="device">장치별 조회 수</h2>
+<h2 id="device">장치 별보기</h2>
 
-<p>장치 별보기 섹션이 표시됩니다. &nbsp;기기 별 조회수 그래프 가능한 장치 유형은 다음과 같습니다.</p>
+<p>장치별 보기&nbsp;섹션에는 장치별 조회 수가 표시된 그래프가 표시됩니다. 가능한 장치 유형은 다음과 같습니다.</p>
 
 <ul>
-	<li><strong>데스크탑</strong>&nbsp; -데스크톱 및 노트북 컴퓨터 포함</li>
-	<li><strong>태블릿</strong>&nbsp; -iPad, Android 태블릿 등이 포함됩니다.</li>
-	<li><strong>변하기 쉬운</strong>&nbsp; - 휴대 전화</li>
-	<li><strong>연결된 TV / 게임 콘솔 / 컴패니언 장치</strong>&nbsp; -스마트 TV, 셋톱 박스 및 게임 콘솔 포함</li>
-	<li><strong>다른</strong>&nbsp; -위의 어느 것도 매핑되지 않은 사용자 에이전트의 경우</li>
+	<li><strong>데스크탑</strong>&nbsp; - 데스크탑 및 랩톱 컴퓨터 포함</li>
+	<li><strong>태블릿</strong>&nbsp; - 아이패드, 안드로이드 태블릿 등이 포함되어 있습니다.</li>
+	<li><strong>모바일</strong>&nbsp; - 휴대폰</li>
+	<li><strong>커넥티드 TV/게임 콘솔/컴패니언 장치</strong>&nbsp; - 스마트 TV, 셋톱 박스 및 게임 콘솔 포함</li>
+	<li><strong>기타</strong>&nbsp; - 위의 어떤 내용에도 매핑되지 않은 사용자 에이전트</li>
 </ul>
 
-<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-views-by-device.png"/></figure>
+<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-views-by-device.png" /></figure>
   </section>
 
   <section class="bcls-section">
-<h2 id="country">국가별 조회 수</h2>
+<h2 id="country">국가 별 조회수</h2>
 
-<p>국가별 보기 섹션에는 국가별 뷰 수가 포함된 그래프가 표시됩니다.</p>
+<p>국가 별보기 섹션에는 국가 별보기 수가 그래프로 표시됩니다.</p>
 
-<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-views-by-country.png"/></figure>
+<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-views-by-country.png" /></figure>
   </section>
 
   <section class="bcls-section">
 <h2 id="export">보고서 데이터 내보내기</h2>
 
-<p>라이브 이벤트 보고서 데이터는 클릭하여 Microsoft Excel 파일로 내보낼 수 있습니다. <strong> XLSX</strong>단추.</p>
+<p>라이브 이벤트 보고서 데이터는<strong> XLSX</strong>버튼을 클릭하여 Microsoft Excel 파일로 내보낼 수 있습니다.</p>
 
-<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" src="/assets/images/general/18843/node18843-export-data.png"/></figure>
+<figure class=“bcls-figure"><img class="bcls-image--no-border" alt="" width="200" height="200" src="/assets/images/general/18843/node18843-export-data.png" /></figure>
   </section>
 
+  <section class="bcls-section">
+    <h2 id="Notes">메모</h2>
+    
+    <p>다음은 라이브 분석과 관련된 참고 사항입니다.</p>
+    
+    <ul>
+      <li>
+        <p>라이브 이벤트로 생성 된 기본 라이브 비디오 ID에 대한 분석이 기록됩니다. 고객이 재생을 위해 m3u8 재생 목록을 가져 오거나이를 사용하여 원격 자산 (새 비디오 ID)을 생성하는 경우 새 자산에 대한 분석이 수집되지 않습니다.</p></li>
+      <li><p><strong>동시 시청자만 실시간으로</strong>표시됩니다. 다른 지표는 표준 분석과 유사한 지연으로 수집 및 집계됩니다.</p></li>
+      <li><p><strong>동시 시청자</strong> Brightcove Player 및 SDK와 함께 제공되는 스트림에 대해서만 정확합니다.</p></li>
+      <li><p>이벤트 후 최대 32 일 동안 데이터를 사용할 수 있습니다.</p></li>
+      <li><p>1분 간격으로 집계된 세션에 의해 실시간으로 정의됩니다.</p></li>
+      <li><p>반복 이벤트 (정적 진입 점)를 사용하면 가장 최근 활성화가 시작될 때부터 분석이 제공됩니다.</p></li>
+      <li><p>현재 분석 모듈은 정확한 "고유 뷰어"데이터를 가져올 수 없으며 라이브 모듈 분석간에 불일치가 있습니다. 시청자 수를 확인하려면 LIVE Analytics UI를 사용하세요.</p></li>
+      <li>
+        <p>특정 광고 차단기로 인해 아래와 같이 라이브 분석 데이터가 제대로로드되지 않습니다.</p>
+        <figure class="bcls-figure">
+          <img class="bcls-image" src="/assets/images/live-module/ad-blocker-blocks-live-analytics.png" alt="Ad Blocker Blocks Analytics Data">
+          <figcaption class="bcls-caption--image">광고 차단기는 분석 데이터를 차단합니다.</figcaption>
+        </figure>
+        <p>광고 차단기를 비활성화하면 문제가 해결됩니다.</p>
+      </li>
+    </ul>
+
 </article>
-<!-- complete bootstrap layout -->
-    </div>
-    <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav" id="right_side_nav">
-        <h6 class="toc">페이지 내용</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
-      
-    </div>
-  </div>
-</div>
-
-<hr>
-<footer class="bcls-footer" role="contentinfo">  <div class="row">
-    <div class="region region-footer-top-center col-md-12">
-      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
-
-        <h2>브라이트코브 지원</h2>
-
-        <ul class="menu">
-          <li>
-            <a href="https://status.brightcove.com">시스템 상태</a>
-          </li>
-          <li>
-            <a href="https://supportportal.brightcove.com/s/login/?">고객 지원 문의</a>
-          </li>
-          <li>
-            <a href="https://support.brightcove.com/">문서화</a>
-          </li>
-        </ul>
-
-      </nav>
-      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
-
-        <h2>교육</h2>
-
-        <ul class="menu">
-          <li>
-            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">온라인 강좌</a>
-          </li>
-          <li>
-            <a href="https://studio.support.brightcove.com/training/register-training.html">강좌 등록</a>
-          </li>
-          <li>
-            <a href="https://university.brightcove.com/">브라이트코브 대학교</a>
-          </li>
-        </ul>
-
-      </nav>
-      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
-
-        <h2>Brightcove</h2>
-
-        <ul class="menu">
-          <li>
-            <a href="https://www.brightcove.com">브라이트코브닷컴</a>
-          </li>
-          <li>
-            <a href="https://supportportal.brightcove.com/s/login/?">연락처</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <div class="row">
-    <div class="region region-footer-bottom-center col-md-12">
-      <div class="bcls-copyright footer-menu">
-        <table>
-          <tr>
-            <td>
-              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> 브라이트코브 Inc. 모든 판권 소유.</div>
-            </td>
-            <td><a href="https://www.brightcove.com/en/legal/privacy">개인 정보 보호</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">이용 약관</a></td>
-            <td>
-              <div class="gf-links-cols footer-menu">
-                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-      
-  var searchBox = sajari.init({
-    mode: "search-box",
-    project: "1588255093746585379", // Set this to your project.
-    collection: "brightcove-documenation", // Set this to your collection.
-    instantPipeline: "autocomplete", // Pipeline used as you type
-    inputPlaceholder: "Search", // Input element placeholder
-    maxSuggestions: 5, // Maximum number of suggestions to show
-    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
-  });
-  
-    searchBox("sub", "pipeline.search-sent", function (_, query) {
-      window.location = "/search.html?q=" + encodeURIComponent(query.q);
-    });
-  
-
-</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
-  
-  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
-  
-  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
-  <script src="/assets/js/sites_nav.js"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
-  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
-  <script src="/assets/js/feedback.js"></script>
-  
-  <script src="/assets/js/sajari-search-foot.js"></script>
-  
-  <!-- <script src="/assets/js/sajari-index.js"></script> -->
-  <style>
-    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
-      background-color: lightblue;
-    }
-    div.sj-tabs__tab {
-      margin-top: 3rem;
-      margin-left: .3rem;
-      border-top-left-radius: .4rem;
-      border-top-right-radius: .4rem;
-      background-color:#e8e8e8;
-    }
-
-    div.sj-tabs__tab.sj-tabs__tab--selected {
-      border-bottom-color: crimson;
-      background-color: #f8f8f8;
-    }
-
-    p.sj-results__result__description.css-p9jvyt {
-      font-size: 1rem;
-    }
-
-    .sj-result__text.css-31l7gp h3 {
-      color: navy;
-      font-size: 1.4rem;
-    }
-    </style>
-
-</body>
-
-</html>
