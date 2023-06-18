@@ -1,0 +1,115 @@
+﻿<article class="markdown-body entry-content" itemprop="text">
+  <h1>
+    <a id="user-content-scheduler-notifications" class="anchor" aria-hidden="true" href="#scheduler-notifications">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    </a>스케줄러 알림
+  </h1>
+  <p>스케줄러로 워크플로를 생성할 때 선택적으로 알림을 구성할 수 있습니다. 작업을 완료한 후 스케줄러는 http 메서드를 사용하여 구성된 엔드포인트에 수행된 작업 및 성공/실패에 대한 세부 정보가<code translate="no">POST</code>포함된 알림을 보냅니다. 예정된 작업에 대한 사전 알림을 구성할 수도 있습니다. 워크플로우 유형에 대한 알림 구성에 대한 <a href="/live-api/references/reference-staging.html">API 참조를</a> 참조하십시오.
+  </p>
+  <h2>
+    <a id="user-content-notification-body" class="anchor" aria-hidden="true" href="#notification-body">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    </a>알림 본문
+  </h2>
+  <p>서버가 사용자에게 알림을<code translate="no">notification_url</code>보내면 요청에는 JSON 본문이 포함됩니다.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>필드</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>행동</td>
+        <td>액션 이름. <a href="#Actions">작업</a> 보기
+        </td>
+      </tr>
+      <tr>
+        <td>작업 흐름</td>
+        <td>작업 완료 후 워크플로가 업데이트되었습니다. 구조는 워크플로 유형에 따라 다릅니다.</td>
+      </tr>
+      <tr>
+        <td>오류</td>
+        <td>조치를 완료하는 중에 오류가 발생하면 이 필드에 오류가 포함됩니다. 값은 작업 유형에 따라 다릅니다.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a id="user-content-actions" class="anchor" aria-hidden="true" href="#actions">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    </a>조치
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>워크플로우 유형</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>알림-활성화</td>
+        <td>jobstartstop</td>
+        <td>작업이 곧 활성화될 것이라는 헤드업 알림입니다.</td>
+      </tr>
+      <tr>
+        <td>활성화하다</td>
+        <td>jobstartstop</td>
+        <td>작업 활성화가 완료되었습니다. <code translate="no">"error"</code>있는 경우 활성화가 실패하고 비활성화가 취소됩니다.
+        </td>
+      </tr>
+      <tr>
+        <td>알림-비활성화</td>
+        <td>jobstartstop</td>
+        <td>작업이 곧 활성화될 것이라는 헤드업 알림입니다.</td>
+      </tr>
+      <tr>
+        <td>비활성화</td>
+        <td>jobstartstop</td>
+        <td>작업 비활성화 강제. <code translate="no">"error"</code>있는 경우 비활성화에 실패한 것입니다.
+        </td>
+      </tr>
+      <tr>
+        <td>알림 클립</td>
+        <td>클립</td>
+        <td>클립이 곧 요청될 것이라는 헤드업 알림입니다.</td>
+      </tr>
+      <tr>
+        <td>클립</td>
+        <td>클립</td>
+        <td>클립 요청이 완료되었습니다. <code translate="no">"error"</code>가 있는 경우 요청이 실패한 것입니다.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</article>

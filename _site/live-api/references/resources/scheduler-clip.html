@@ -1,0 +1,201 @@
+﻿<article class="markdown-body entry-content" itemprop="text"><h1><a id="user-content-clip" class="anchor" aria-hidden="true" href="#clip"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>클립</h1>
+	<p>Clip 끝점을 사용하여 기존 라이브 작업의 클립 이벤트를 예약할 수 있습니다. 지정된 시간에 당사 시스템은 귀하를 대신하여 클립 작업을 시작하기 위해 필요한 API를 호출합니다.</p>
+	<h2><a id="user-content-requirements" class="anchor" aria-hidden="true" href="#requirements"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>요구사항</h2>
+	<ul>
+	<li>계정의 라이브 API 키입니다.</li>
+	<li>라이브 계정에는 스케줄러 재정의가 활성화되어 있어야 합니다.</li>
+	</ul>
+	<h2><a id="user-content-create-a-clip-workflow" class="anchor" aria-hidden="true" href="#create-a-clip-workflow"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>클립 워크플로 만들기</h2>
+	<p>클립을 만들 때 클립 시간 경계 ( <code translate="no">output</code>필드 내) 와 클립을 요청할 예약 시간 ( <code translate="no">time_utc</code>필드) 을 모두 지정해야 합니다.</p>
+	<p>요청 본문의<code translate="no">output</code>필드는 표준 VOD 엔드포인트에 있는<code translate="no">outputs</code>필드의 동일한 필드를 모두 지원하지만 스케줄링된 클립은 목록이 아닌 단일 출력만 지원합니다. 사용 가능한 필드에 대한 자세한 내용은 <a href="https://live.support.brightcove.com/live-api/guides/live-api-creating-vod-clips.html" rel="nofollow">VOD 클리핑 지원 문서를</a> 참조하세요.</p>
+	<p>일반적으로 클립의 끝 경계와<code translate="no">time_utc</code>일치하도록 설정합니다. 예약된 시간은 클립의 끝 경계 이후 여야 합니다. 그렇지 않으면 클립 요청이 예약된 시간에 실패합니다.</p>
+	<p><code translate="no">time_utc</code>필드의 타임스탬프는 UTC 형식의 Unix 타임스탬프 (초 단위) 여야 합니다. 변환을 위해 <a href="https://www.unixtimestamp.com/" rel="nofollow">https://www.unixtimestamp.com/을</a> 사용할 수 있습니다.</p>
+	<p>15분짜리 클립을 로 시작하고 싶다고 가정해 봅시다<code translate="no">2021-02-09T13:55:00+00:00</code> . <code translate="no">output.start_time</code>및<code translate="no">output.end_time</code>를 사용하여 클립 경계를 초 단위의 유닉스 시간으로 지정할 수 있습니다. (사용 가능한 필드에 대한 자세한 내용은 <a href="https://live.support.brightcove.com/live-api/guides/live-api-creating-vod-clips.html" rel="nofollow">VOD 클리핑 지원 문서를</a> 참조하십시오).</p>
+	<pre><code translate="no">start_time:
+	2021-02-09T13:55:00+00:00 = 1612878900
+	
+	end_time:
+	2021-02-09T14:10:00+00:00 = 1612879800
+	</code></pre>
+	<p>스케줄러도 클립 요청을 스케줄링하는 데 시간이<code translate="no">end_time</code>필요하므로 동일한 값을 사용할 수 있습니다. 이 값도 초 단위의 유닉스 시간이기 때문입니다.</p>
+	<p>또한 클립을 위한 Videocloud 비디오도 만들려고 하므로 해당 비디오를 클립에 포함시키고자<code translate="no">output</code>합니다. 워크플로 예약 시 Videocloud Video가 생성되며 해당 ID가 응답으로 반환되므로 클립이 만들어지기 전에 비디오 ID를 알 수 있습니다. 나중에 클립 요청을 취소하거나 예약된 시간에 실패하면 Videocloud 비디오가 계정에서 제거되지 않습니다.</p>
+	<p>워크플로를 생성하려면 다음 요청을 수행합니다.</p>
+	<pre><code translate="no">POST https://api.bcovlive.io/v1/scheduler/clip
+	
+	Headers:
+	
+	Content-Type: application/json
+	X-API-KEY: your API Key
+	
+	Body:
+	
+	{
+		"job_id":  "your Job ID",
+		"description": "My Scheduled Clip",
+		"clip": {
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879800,
+				"videocloud": {
+					"video": {
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879800
+		}
+	}
+	
+	</code></pre>
+	<p>다음과 유사한 응답을 받아야 합니다.</p>
+	<pre><code translate="no">
+	{
+		"account_id": "your Account ID",
+		"description": "My Tuesday Clip",
+		"type": "clip",
+		"job_id": "your Job ID",
+		"clip": {
+			"state": "pending",
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879800,
+				"videocloud": {
+					"video": {
+						"id": "70702010152202",
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879800
+		}
+		"workflow_id": "d44cf29f4f184757ac0995beb8a0097e",
+	}
+	
+	</code></pre>
+	<p><code translate="no">clip.output.videocloud.video.id</code>여기에는 새로 만든 Videocloud 비디오의 ID가 들어 있는 메모입니다. 비디오 소스가<code translate="no">time_utc</code>인제스트된 클립으로 업데이트됩니다.</p>
+	<h2><a id="user-content-update-a-clip-workflow" class="anchor" aria-hidden="true" href="#update-a-clip-workflow"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>클립 워크플로 업데이트</h2>
+	<p>둘 다 업데이트할 수 있습니다. <code translate="no">output</code>그리고<code translate="no">time_utc</code>당신의 클립. 다음과 같은 경우에만 업데이트할 수<code translate="no">"state": "pending"</code>있습니다.</p>
+	<p>이전 예에 따라 클립을 계획보다 5분 짧게 만들고 싶습니다. <code translate="no">output</code>필드를 업데이트할 때는 변경 사항뿐만 아니라 전체 객체를 제공해야 합니다. 여기에는 위의 생성 호출에서 반환된 Videocloud 비디오 ID가 포함됩니다.</p>
+	<p>이 예에서는 둘 다 업데이트했습니다. <code translate="no">end_time</code>그리고<code translate="no">time_utc</code> 5분 단축을 반영합니다.</p>
+	<pre><code translate="no">PUT https://api.bcovlive.io/v1/scheduler/clip/workflow_id
+	
+	Headers:
+	
+	Content-Type: application/json
+	X-API-KEY: your API Key
+	
+	Body:
+	
+	{
+		"clip": {
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879500,
+				"videocloud": {
+					"video": {
+						"id": "70702010152202",
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879500
+		}
+	}
+	
+	</code></pre>
+	<p>응답으로 업데이트된 워크플로를 받게 됩니다.</p>
+	<pre><code translate="no">{
+		"account_id": "your Account ID",
+		"description": "My Tuesday Clip",
+		"type": "clip",
+		"job_id": "your Job ID",
+		"clip": {
+			"state": "pending",
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879500,
+				"videocloud": {
+					"video": {
+						"id": "70702010152202",
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879500
+		}
+		"workflow_id": "d44cf29f4f184757ac0995beb8a0097e",
+	}
+	
+	</code></pre>
+	<h2><a id="user-content-cancel-a-clip-workflow" class="anchor" aria-hidden="true" href="#cancel-a-clip-workflow"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>클립 워크플로 취소</h2>
+	<p><code translate="no">DELETE</code>요청을 통해 클립을 취소할 수 있습니다.</p>
+	<p>클립 워크플로를 취소할 때 예약 시 생성된 모든 Videocloud 비디오는 백엔드에서 제거되지 않습니다 . Videocloud 계정에서 분리된 비디오를 수동으로 제거해야 합니다.</p>
+	<pre><code translate="no">DELETE https://api.bcovlive.io/v1/scheduler/clip/workflow_id
+	
+	Headers:
+	
+	X-API-KEY: your API Key
+	</code></pre>
+	<p>응답으로 업데이트된 워크플로를 받게 됩니다.</p>
+	<pre><code translate="no">
+	{
+		"account_id": "your Account ID",
+		"description": "My Tuesday Clip",
+		"type": "clip",
+		"job_id": "your Job ID",
+		"clip": {
+			"state": "cancelled",
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879500,
+				"videocloud": {
+					"video": {
+						"id": "70702010152202",
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879500
+		}
+		"workflow_id": "d44cf29f4f184757ac0995beb8a0097e",
+	}
+	
+	</code></pre>
+	<h2><a id="user-content-notifications" class="anchor" aria-hidden="true" href="#notifications"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>알림</h2>
+	<p>워크플로를 생성할 때 선택적으로 알림을 구성할 수 있습니다. 당사 서비스를<code translate="no">POST</code>이용하려면 URL을 입력해야 합니다. 스케줄러가 클립 콜을 하면 알림을 보내드립니다. 클립<code translate="no">n</code>몇 초 전에 알림을 받도록 구성할 수도 있습니다. 자세한 내용은 <a href="/alive/task-scheduler/blob/main/docs/guide_notifications.md">알림 가이드를</a> 참조하세요.</p>
+	<pre><code translate="no">POST https://api.bcovlive.io/v1/scheduler/clip
+	
+	Headers:
+	
+	Content-Type: application/json
+	X-API-KEY: your API Key
+	
+	Body:
+	
+	
+	{
+		"job_id":  "your Job ID",
+		"description": "My Scheduled Clip",
+		"notification_url": "http://example.com/live/clip/callbacks",
+		"clip": {
+			"output": {
+				"label": "My Scheduled Clip",
+				"start_time": 1612878900,
+				"end_time": 1612879800,
+				"videocloud": {
+					"video": {
+						"name": "My Scheduled Clip"
+					}
+				}
+			},
+			"time_utc": 1612879800,
+			"notification": 600
+		}
+	}
+	</code></pre>
+	</article>
